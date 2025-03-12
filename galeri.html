@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Kenangan</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #ffb6c1, #98fb98);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .header {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #008000;
+            margin-bottom: 20px;
+        }
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        .gallery-row {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .gallery-item {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        img, video {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+        }
+        .button {
+            background: #ff69b4;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Galeri Kenangan</div>
+    
+    <div class="gallery">
+        <div class="gallery-row">
+            <div class="gallery-item"><img src="/images/photo1.jpg" alt="Foto 1"></div>
+            <div class="gallery-item"><img src="/images/photo2.jpg" alt="Foto 2"></div>
+            <div class="gallery-item"><img src="/images/photo3.jpg" alt="Foto 3"></div>
+        </div>
+        <div class="gallery-row">
+            <div class="gallery-item"><video controls><source src="/videos/video1.mp4" type="video/mp4"></video></div>
+            <div class="gallery-item"><video controls><source src="/videos/video2.mp4" type="video/mp4"></video></div>
+        </div>
+    </div>
+    
+    <button class="button" onclick="history.back()">Kembali</button>
+</body>
+</html>

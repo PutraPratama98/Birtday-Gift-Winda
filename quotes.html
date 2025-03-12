@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes untuk Winda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffafbd, #ffc3a0, #d4fc79, #96e6a1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+            margin: 0;
+        }
+        .header {
+            position: absolute;
+            top: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            backdrop-filter: blur(5px);
+        }
+        .quote-box {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin: 20px;
+            font-size: 20px;
+            color: #555;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        button {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Quotes untuk Winda</div>
+    <div class="quote-box" id="quote-box">Cinta sejati adalah tentang memahami dan menghargai, bukan mengubah.</div>
+    <div class="button-container">
+        <button onclick="prevQuote()">⬅ Sebelumnya</button>
+        <button onclick="nextQuote()">Selanjutnya ➡</button>
+    </div>
+    <button onclick="goBack()" style="margin-top: 20px;">🔙 Kembali</button>
+
+    <script>
+        const quotes = [
+            "Cinta sejati adalah tentang memahami dan menghargai, bukan mengubah.",
+            "Aku akan selalu ada di sisimu, tidak peduli seberapa sulit perjalanan ini.",
+            "Setiap hari bersamamu adalah hadiah yang tak ternilai.",
+            "Jangan pernah ragu, kamu adalah cahaya dalam hidupku, dan aku akan selalu mendukungmu.",
+            "Kamu lebih kuat dari yang kamu kira, dan aku akan selalu ada untuk mengingatkanmu.",
+            "Percayalah, semua yang kita jalani akan membawa kita ke tempat yang lebih indah.",
+            "Kamu tidak pernah sendiri, aku selalu bersamamu dalam doa dan hati.",
+            "Cinta kita bukan tentang kesempurnaan, tapi bagaimana kita tetap bertahan bersama.",
+            "Aku bangga padamu, dengan semua yang kamu lakukan dan semua yang akan kamu capai.",
+            "Hari ini mungkin sulit, tapi besok akan lebih baik. Aku percaya padamu."
+        ];
+        
+        let index = 0;
+        const quoteBox = document.getElementById("quote-box");
+
+        function nextQuote() {
+            index = (index + 1) % quotes.length;
+            quoteBox.innerText = quotes[index];
+        }
+
+        function prevQuote() {
+            index = (index - 1 + quotes.length) % quotes.length;
+            quoteBox.innerText = quotes[index];
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

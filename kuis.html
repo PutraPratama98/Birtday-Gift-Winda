@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Interaktif - Dimas & Winda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffb3c1, #b3e6b3);
+            text-align: center;
+            padding: 20px;
+        }
+        .header {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        .option {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #ffccd5;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .option:hover {
+            background: #ffb3c1;
+        }
+        .hidden {
+            display: none;
+        }
+        .nav-button {
+            background: #ff4d6d;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .nav-button:hover {
+            background: #e60026;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Kuis Cinta Dimas & Winda</h1>
+    </div>
+    <div class="quiz-container">
+        <h2 id="question">Loading...</h2>
+        <div id="options"></div>
+        <p id="score" class="hidden">Skor Kamu: <span id="score-value">0</span></p>
+        <button id="restart" class="hidden nav-button" onclick="restartQuiz()">Main Lagi</button>
+        <button class="nav-button" onclick="goBack()">Kembali</button>
+    </div>
+
+    <script>
+        const questions = [
+            { question: "Di mana pertama kali aku dan Winda bertemu?", options: ["Mall", "Kantor", "Pusat Kota Jakarta", "Cafe"], answer: "Pusat Kota Jakarta" },
+            { question: "Apa kesamaan yang membuat aku tertarik dengan Winda?", options: ["Sama-sama suka drama Korea", "Sama-sama suka One Piece", "Sama-sama suka kopi", "Sama-sama suka musik jazz"], answer: "Sama-sama suka One Piece" },
+            { question: "Siapa yang pertama kali mengenalkan aku dengan Winda?", options: ["Mas Faisal", "Mas Ari", "Bunda", "Sudendra"], answer: "Mas Ari" }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        const questionElement = document.getElementById("question");
+        const optionsElement = document.getElementById("options");
+        const scoreElement = document.getElementById("score");
+        const scoreValue = document.getElementById("score-value");
+        const restartButton = document.getElementById("restart");
+
+        function loadQuestion() {
+            if (currentQuestion < questions.length) {
+                questionElement.textContent = questions[currentQuestion].question;
+                optionsElement.innerHTML = "";
+                questions[currentQuestion].options.forEach(option => {
+                    const button = document.createElement("button");
+                    button.textContent = option;
+                    button.className = "option";
+                    button.onclick = () => checkAnswer(option);
+                    optionsElement.appendChild(button);
+                });
+            } else {
+                showResult();
+            }
+        }
+
+        function checkAnswer(selected) {
+            if (selected === questions[currentQuestion].answer) {
+                score++;
+            }
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function showResult() {
+            questionElement.textContent = "Kuis Selesai!";
+            optionsElement.innerHTML = "";
+            scoreElement.classList.remove("hidden");
+            scoreValue.textContent = score + " dari " + questions.length;
+            restartButton.classList.remove("hidden");
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            scoreElement.classList.add("hidden");
+            restartButton.classList.add("hidden");
+            loadQuestion();
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
