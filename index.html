@@ -24,7 +24,7 @@
     .gift {
       width: 180px;
       height: 180px;
-      background-image: url('gift.png'); /* Nama logo kado */
+      background-image: url('gift.png'); /* Logo kado */
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -35,12 +35,6 @@
 
     .gift:hover {
       transform: scale(1.1);
-    }
-
-    h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
-      color: #ffffff;
     }
 
     p {
@@ -61,21 +55,31 @@
 
   <div class="container">
     <div class="gift" id="gift"></div>
-    <p> 🎁 Buka Kadonya 🎁</p>
+    <p>🎁 Buka Kadonya 🎁</p>
   </div>
 
   <!-- Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
+  <!-- Audio Musik -->
+  <audio id="backgroundMusic" src="romantic-music.mp3" loop></audio>
+
   <script>
     const gift = document.getElementById('gift');
+    const backgroundMusic = document.getElementById('backgroundMusic');
 
     gift.addEventListener('click', () => {
-      // Sembunyikan logo gift
+      // Mainkan musik kalau belum dimulai
+      if (!localStorage.getItem('musicPlaying')) {
+        backgroundMusic.play();
+        localStorage.setItem('musicPlaying', 'true');
+      }
+
+      // Sembunyikan gift box
       gift.style.opacity = '0';
 
       // Confetti meledak banyak!
-      const duration = 5 * 1000; // 5 detik
+      const duration = 5 * 1000;
       const animationEnd = Date.now() + duration;
       const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
 
@@ -88,7 +92,7 @@
 
         if (timeLeft <= 0) {
           clearInterval(interval);
-          // Pindah ke halaman beranda
+          // Pindah ke halaman beranda setelah confetti selesai
           window.location.href = "beranda.html";
         }
 
