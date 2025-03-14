@@ -1,113 +1,114 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kado Spesial untuk Winda</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            background: linear-gradient(to bottom, #ffb6c1, #98fb98);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kado untuk Winda</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #ffb6c1, #98fb98);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
 
-        .gift-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            cursor: pointer;
-            transition: opacity 1s ease;
-        }
+    .container {
+      text-align: center;
+    }
 
-        .gift-container img {
-            width: 150px;
-            height: 150px;
-            animation: bounce 2s infinite;
-        }
+    .gift {
+      width: 180px;
+      height: 180px;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/2486/2486586.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin: 0 auto 30px;
+      cursor: pointer;
+      transition: opacity 0.5s ease, transform 0.3s ease;
+    }
 
-        .text {
-            margin-top: 25px;
-            font-size: 28px; /* Lebih besar */
-            color: #e91e63;  /* Warna selaras dengan tema pink */
-            font-weight: bold;
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
-        }
+    .gift:hover {
+      transform: scale(1.1);
+    }
 
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
+    h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
 
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 9999;
-        }
-    </style>
+    p {
+      font-size: 40px; /* Lebih besar lagi */
+      color: red; /* Warna merah seperti request */
+      font-weight: bold;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    p:hover {
+      color: #ff4d4d; /* Merah lebih terang saat hover */
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
 
-    <div class="gift-container" id="gift">
-        <img src="gift.png" alt="Kado">
-        <div class="text">🎁 Buka Kadonya 🎁</div>
-    </div>
+  <div class="container">
+    <div class="gift" id="gift"></div>
+    <p> 🎁 Buka Kadonya 🎁</p>
+  </div>
 
-    <!-- Musik Background -->
-    <audio id="bg-music" src="bg-music.mp3" preload="auto"></audio>
+  <!-- Confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  
+  <!-- Background Music -->
+  <audio id="bg-music" src="romantic-music.mp3" preload="auto"></audio>
 
-    <!-- Confetti Library -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    const gift = document.getElementById('gift');
+    const bgMusic = document.getElementById('bg-music');
 
-    <script>
-        const gift = document.getElementById('gift');
-        const bgMusic = document.getElementById('bg-music');
+    gift.addEventListener('click', () => {
+      // Play music
+      bgMusic.play();
 
-        gift.addEventListener('click', () => {
-            // 1. Memulai musik
-            bgMusic.play();
+      // Hide gift icon (fade out)
+      gift.style.opacity = '0';
 
-            // 2. Hilangkan tombol kado (fade out)
-            gift.style.opacity = '0';
+      // Confetti explosion
+      const duration = 5 * 1000; // 5 detik
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
 
-            // 3. Tampilkan confetti super banyak
-            let duration = 3 * 1000; // 3 detik confetti
-            let animationEnd = Date.now() + duration;
-            let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+      function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+      }
 
-            function randomInRange(min, max) {
-                return Math.random() * (max - min) + min;
-            }
+      const interval = setInterval(() => {
+        const timeLeft = animationEnd - Date.now();
 
-            let interval = setInterval(function() {
-                let timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) {
+          clearInterval(interval);
+          // Redirect setelah confetti
+          window.location.href = "beranda.html"; // Halaman beranda tujuan
+        }
 
-                if (timeLeft <= 0) {
-                    clearInterval(interval);
-                    // Redirect setelah confetti selesai
-                    window.location.href = "index.html"; // ganti ke halaman beranda kamu
-                }
-
-                let particleCount = 200 * (timeLeft / duration);
-                // letus confetti ke mana-mana
-                confetti(Object.assign({}, defaults, {
-                    particleCount,
-                    origin: { x: randomInRange(0, 1), y: Math.random() - 0.2 }
-                }));
-            }, 250);
-        });
-    </script>
+        confetti(Object.assign({}, defaults, {
+          particleCount: 10,
+          origin: {
+            x: randomInRange(0.1, 0.9),
+            y: Math.random() - 0.2
+          }
+        }));
+      }, 200);
+    });
+  </script>
 
 </body>
 </html>
