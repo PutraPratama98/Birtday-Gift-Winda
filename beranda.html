@@ -88,7 +88,6 @@
       max-width: 600px;
     }
 
-    /* Optional scrollbar style */
     .grid-menu-container::-webkit-scrollbar {
       height: 8px;
     }
@@ -107,13 +106,13 @@
 <body>
 
   <header>
-    <h1> 🎉 Selamat Ulang Tahun, Winda 🎉</h1>
+    <h1> 🎉 Selamat Ulang Tahun, Winda Yani Hutasoit 🎉</h1>
   </header>
 
   <main class="welcome">
     <h2>Winda, hari ini adalah hari spesial untukmu!</h2>
     <p>Aku telah menyiapkan sesuatu yang spesial untukmu di website ini. Selamat Menikmati!</p>
-    
+
     <div class="grid-menu-container">
       <div class="grid-menu">
         <a href="surat.html">
@@ -138,33 +137,39 @@
         </a>
       </div>
     </div>
-
   </main>
 
   <footer>
     <p>&copy; 2025 Dibuat dengan cinta oleh Dimas 💖</p>
   </footer>
 
-  <!-- Musik Latar -->
+  <!-- Audio player -->
   <audio id="backgroundMusic" src="romantic-music.mp3" loop></audio>
 
   <script>
     const backgroundMusic = document.getElementById('backgroundMusic');
 
-    // Cek apakah musik sudah dimainkan sebelumnya
-    if (localStorage.getItem('musicPlaying')) {
-      backgroundMusic.play().catch((e) => {
-        console.log("Autoplay dicegah oleh browser, klik layar untuk memulai musik.");
-      });
+    // Cek apakah user udah klik tombol buka kado di halaman sebelumnya
+    const musicStatus = localStorage.getItem('musicPlaying');
+
+    // Kalau sudah, langsung putar musiknya
+    if (musicStatus === 'true') {
+      playMusic();
     }
 
-    // Kalau belum ada, aktifkan pemutar musik setelah klik layar pertama
-    document.body.addEventListener('click', () => {
-      if (!localStorage.getItem('musicPlaying')) {
-        backgroundMusic.play();
+    // Kalau browser butuh klik user, pasang listener
+    document.body.addEventListener('click', playMusic);
+
+    function playMusic() {
+      backgroundMusic.play().then(() => {
+        console.log("Musik diputar");
         localStorage.setItem('musicPlaying', 'true');
-      }
-    });
+        // Hapus event listener setelah musik berhasil play
+        document.body.removeEventListener('click', playMusic);
+      }).catch(err => {
+        console.log("Browser butuh klik user buat play musik:", err);
+      });
+    }
   </script>
 
 </body>
