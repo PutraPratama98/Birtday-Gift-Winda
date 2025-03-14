@@ -7,57 +7,76 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #ffb6c1, #98fb98);
+            background: linear-gradient(to bottom, #ffb6c1, #98fb98); /* Gradien dari pink muda ke hijau muda */
             text-align: center;
+            margin: 0;
             padding: 20px;
+            color: #333;
         }
         .header {
-            background: rgba(255, 255, 255, 0.6);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.6); /* Transparan putih */
+            backdrop-filter: blur(5px); /* Efek blur */
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px auto;
+            width: fit-content;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         .quiz-container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            margin: auto;
+            background: rgba(255, 255, 255, 0.8); /* Putih semi-transparan */
+            backdrop-filter: blur(5px);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        h1, h2 {
+            color: #e91e63; /* Pink tua */
         }
         .option {
             display: block;
-            margin: 10px 0;
-            padding: 10px;
-            background: #ffccd5;
+            margin: 12px 0;
+            padding: 12px;
+            background: #e91e63; /* Pink tua */
+            color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             width: 100%;
+            transition: background-color 0.3s, transform 0.2s;
         }
         .option:hover {
-            background: #ffb3c1;
+            background: #c2185b; /* Pink lebih gelap */
+            transform: scale(1.03);
         }
         .hidden {
             display: none;
         }
         .nav-button {
-            background: #ff4d6d;
+            background: #4caf50; /* Hijau segar */
             color: white;
-            padding: 10px 15px;
+            padding: 12px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 15px;
+            transition: background-color 0.3s, transform 0.2s;
         }
         .nav-button:hover {
-            background: #e60026;
+            background: #388e3c; /* Hijau lebih gelap */
+            transform: scale(1.05);
+        }
+        #score {
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>Kuis Cinta Dimas & Winda</h1>
+        <h1>Kuis Cinta Dimas & Winda 💖</h1>
     </div>
     <div class="quiz-container">
         <h2 id="question">Loading...</h2>
@@ -69,13 +88,31 @@
 
     <script>
         const questions = [
-            { question: "Di mana pertama kali aku dan Winda bertemu?", options: ["Mall", "Kantor", "Pusat Kota Jakarta", "Cafe"], answer: "Pusat Kota Jakarta" },
-            { question: "Apa kesamaan yang membuat aku tertarik dengan Winda?", options: ["Sama-sama suka drama Korea", "Sama-sama suka One Piece", "Sama-sama suka kopi", "Sama-sama suka musik jazz"], answer: "Sama-sama suka One Piece" },
-            { question: "Siapa yang pertama kali mengenalkan aku dengan Winda?", options: ["Mas Faisal", "Mas Ari", "Bunda", "Sudendra"], answer: "Mas Ari" }
+            {
+                question: "Di mana pertama kali aku dan Winda bertemu?",
+                options: ["Mall", "Kantor", "Pusat Kota Jakarta", "Cafe"],
+                answer: "Pusat Kota Jakarta"
+            },
+            {
+                question: "Apa kesamaan yang membuat aku tertarik dengan Winda?",
+                options: [
+                    "Sama-sama suka drama Korea",
+                    "Sama-sama suka One Piece",
+                    "Sama-sama suka kopi",
+                    "Sama-sama suka musik jazz"
+                ],
+                answer: "Sama-sama suka One Piece"
+            },
+            {
+                question: "Siapa yang pertama kali mengenalkan aku dengan Winda?",
+                options: ["Mas Faisal", "Mas Ari", "Bunda", "Sudendra"],
+                answer: "Mas Ari"
+            }
         ];
 
         let currentQuestion = 0;
         let score = 0;
+
         const questionElement = document.getElementById("question");
         const optionsElement = document.getElementById("options");
         const scoreElement = document.getElementById("score");
@@ -86,6 +123,7 @@
             if (currentQuestion < questions.length) {
                 questionElement.textContent = questions[currentQuestion].question;
                 optionsElement.innerHTML = "";
+
                 questions[currentQuestion].options.forEach(option => {
                     const button = document.createElement("button");
                     button.textContent = option;
@@ -107,10 +145,10 @@
         }
 
         function showResult() {
-            questionElement.textContent = "Kuis Selesai!";
+            questionElement.textContent = "Kuis Selesai! 🎉";
             optionsElement.innerHTML = "";
             scoreElement.classList.remove("hidden");
-            scoreValue.textContent = score + " dari " + questions.length;
+            scoreValue.textContent = `${score} dari ${questions.length}`;
             restartButton.classList.remove("hidden");
         }
 
