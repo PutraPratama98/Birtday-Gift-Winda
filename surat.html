@@ -15,19 +15,38 @@
             justify-content: center;
             align-items: center;
         }
+
         .container {
             max-width: 600px;
             background: white;
-            padding: 20px;
+            padding: 20px 30px;
             border-radius: 15px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            line-height: 1.6;
         }
+
         h1 {
             color: #e91e63;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
+
+        #message {
+            font-size: 16px;
+            color: #333;
+            min-height: 200px;
+            white-space: pre-line;
+        }
+
+        #message p {
+            margin-bottom: 15px; /* jarak antar paragraf */
+        }
+
         .button-container {
             margin-top: 20px;
         }
+
         button {
             background-color: #e91e63;
             color: white;
@@ -37,24 +56,78 @@
             cursor: pointer;
             font-size: 16px;
         }
+
+        /* Optional: cursor effect while typing */
+        #message::after {
+            content: '|';
+            animation: blink 1s infinite;
+            display: inline-block;
+            margin-left: 2px;
+            color: #e91e63;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🌸 Selamat Ulang Tahun, Winda Yani Hutasoit! 🌸</h1>
-        <p>Cintaku, di hari istimewa ini, aku ingin mengungkapkan betapa berharganya dirimu dalam hidupku. Kamu adalah anugerah terindah yang pernah Tuhan berikan kepadaku.</p>
-        <p>Setiap tawa, setiap cerita, setiap perjuangan yang kita lalui bersama semakin meyakinkanku bahwa kamu adalah seseorang yang pantas aku perjuangkan, apapun yang terjadi.</p>
-        <p>Aku bersyukur atas setiap momen yang telah kita lewati, dari pertama kali kita bertemu hingga kini.</p>
-        <p>Bersamamu, aku belajar arti ketulusan, kesabaran, dan cinta yang sesungguhnya.</p>
-        <p>Kamu bukan hanya cinta dalam hidupku, tapi juga sahabat terbaikku, pendengar setiaku, dan tempatku kembali saat lelah melanda.</p>
-        <p>Di hari ulang tahunmu ini, aku berdoa agar setiap langkahmu selalu diberkati, setiap impianmu bisa terwujud, dan kebahagiaan selalu menyertaimu.</p>
-        <p>Jangan pernah ragu akan cintaku, karena aku akan selalu ada di sampingmu, mendukungmu, mencintaimu, dan memastikan bahwa kamu selalu tersenyum bahagia.</p>
-        <p style="color: #e91e63; font-size: 24px;">Selamat ulang tahun, sayangku! 🎂🎉💖</p>
-        <p>Semoga kebahagiaan selalu bersamamu, seperti kamu yang selalu membawa kebahagiaan dalam hidupku.</p>
-        <p style="color: #e91e63; font-size: 24px;">Aku mencintaimu, hari ini, esok, dan selamanya. 💞</p>
+        <h1>🎁Selamat Ulang Tahun🎁<br>🌸Winda Yani Hutasoit🌸</h1>
+        <div id="message"></div>
         <div class="button-container">
             <button onclick="window.history.back()">Kembali</button>
         </div>
     </div>
+
+    <script>
+        const paragraphs = [
+            "Cintaku, di hari istimewa ini, aku ingin mengungkapkan betapa berharganya dirimu dalam hidupku. Kamu adalah anugerah terindah yang pernah Tuhan berikan kepadaku.",
+            "Setiap tawa, setiap cerita, setiap perjuangan yang kita lalui bersama semakin meyakinkanku bahwa kamu adalah seseorang yang pantas aku perjuangkan, apapun yang terjadi.",
+            "Aku bersyukur atas setiap momen yang telah kita lewati, dari pertama kali kita bertemu hingga kini.",
+            "Bersamamu, aku belajar arti ketulusan, kesabaran, dan cinta yang sesungguhnya.",
+            "Kamu bukan hanya cinta dalam hidupku, tapi juga sahabat terbaikku, pendengar setiaku, dan tempatku kembali saat lelah melanda.",
+            "Di hari ulang tahunmu ini, aku berdoa agar setiap langkahmu selalu diberkati, setiap impianmu bisa terwujud, dan kebahagiaan selalu menyertaimu.",
+            "Jangan pernah ragu akan cintaku, karena aku akan selalu ada di sampingmu, mendukungmu, mencintaimu, dan memastikan bahwa kamu selalu tersenyum bahagia.",
+            "🎂🎉💖 Selamat ulang tahun, sayangku! 🎂🎉💖",
+            "Semoga kebahagiaan selalu bersamamu, seperti kamu yang selalu membawa kebahagiaan dalam hidupku.",
+            "💞 Aku mencintaimu, hari ini, esok, dan selamanya. 💞"
+        ];
+
+        let i = 0;
+        let j = 0;
+        const speed = 30; // Kecepatan mengetik per huruf
+        const messageDiv = document.getElementById("message");
+
+        function typeWriter() {
+            if (i < paragraphs.length) {
+                const currentParagraph = paragraphs[i];
+                if (j < currentParagraph.length) {
+                    if (j === 0) {
+                        // Mulai paragraf baru
+                        const p = document.createElement("p");
+                        p.setAttribute("id", "para-" + i);
+                        messageDiv.appendChild(p);
+                    }
+                    const p = document.getElementById("para-" + i);
+                    p.textContent += currentParagraph.charAt(j);
+                    j++;
+                    setTimeout(typeWriter, speed);
+                } else {
+                    i++;
+                    j = 0;
+                    setTimeout(typeWriter, 500); // jeda sedikit sebelum lanjut ke paragraf berikutnya
+                }
+            } else {
+                messageDiv.style.setProperty('--after-content', 'none');
+                messageDiv.style.animation = 'none';
+                messageDiv.style.borderRight = 'none';
+                messageDiv.removeAttribute('style');
+            }
+        }
+
+        window.onload = typeWriter;
+    </script>
 </body>
 </html>
