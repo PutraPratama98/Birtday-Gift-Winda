@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kado untuk Winda</title>
   <style>
     body {
@@ -24,7 +24,7 @@
     .gift {
       width: 180px;
       height: 180px;
-      background-image: url('gift.png'); /* Logo kado */
+      background-image: url('gift.png');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -35,6 +35,12 @@
 
     .gift:hover {
       transform: scale(1.1);
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+      color: #ffffff;
     }
 
     p {
@@ -55,31 +61,31 @@
 
   <div class="container">
     <div class="gift" id="gift"></div>
-    <p>🎁 Buka Kadonya 🎁</p>
+    <p> 🎁 Buka Kadonya 🎁</p>
   </div>
 
   <!-- Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
-  <!-- Audio Musik -->
+  <!-- Audio -->
   <audio id="backgroundMusic" src="romantic-music.mp3" loop></audio>
 
   <script>
     const gift = document.getElementById('gift');
-    const backgroundMusic = document.getElementById('backgroundMusic');
+    const music = document.getElementById('backgroundMusic');
 
     gift.addEventListener('click', () => {
-      // Mainkan musik kalau belum dimulai
-      if (!localStorage.getItem('musicPlaying')) {
-        backgroundMusic.play();
-        localStorage.setItem('musicPlaying', 'true');
-      }
+      // Set localStorage untuk menandai musik dimainkan
+      localStorage.setItem('musicPlaying', 'true');
 
-      // Sembunyikan gift box
+      // Mainkan musik langsung di halaman index.html
+      music.play();
+
+      // Sembunyikan logo gift
       gift.style.opacity = '0';
 
       // Confetti meledak banyak!
-      const duration = 5 * 1000;
+      const duration = 5 * 1000; // 5 detik
       const animationEnd = Date.now() + duration;
       const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
 
@@ -92,7 +98,8 @@
 
         if (timeLeft <= 0) {
           clearInterval(interval);
-          // Pindah ke halaman beranda setelah confetti selesai
+
+          // Setelah confetti selesai, pindah ke halaman beranda
           window.location.href = "beranda.html";
         }
 
@@ -104,6 +111,15 @@
           }
         }));
       }, 200);
+    });
+
+    // Cek apakah musik sudah berjalan di halaman sebelumnya
+    window.addEventListener('load', () => {
+      if (localStorage.getItem('musicPlaying') === 'true') {
+        music.play().catch((e) => {
+          console.log("Autoplay diblokir, klik dulu untuk play.");
+        });
+      }
     });
   </script>
 
