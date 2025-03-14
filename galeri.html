@@ -6,42 +6,57 @@
     <title>Galeri Kenangan</title>
     <style>
         body {
-            background: linear-gradient(to bottom right, #ffb6c1, #98fb98);
-            font-family: Arial, sans-serif;
-            text-align: center;
+            margin: 0;
             padding: 20px;
+            background: linear-gradient(to bottom, #ffb6c1, #98fb98);
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .wrapper {
+            width: 100%;
         }
         .header {
-            background: rgba(255, 255, 255, 0.3);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(10px);
-            padding: 15px;
-            border-radius: 10px;
+            padding: 15px 0;
+            border-radius: 0 0 10px 10px;
             font-size: 24px;
             font-weight: bold;
-            color: #008000;
-            margin-bottom: 20px;
+            color: #d63384;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
         }
         .gallery {
+            margin-top: 100px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 30px;
             align-items: center;
+            justify-content: center;
         }
         .gallery-row {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
         }
         .gallery-item {
             background: white;
             padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
         .gallery-item:hover {
             transform: scale(1.05);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
         }
         img, video {
             width: 200px;
@@ -49,35 +64,47 @@
             border-radius: 10px;
         }
         .button {
-            background: #ff69b4;
+            background: #d63384;
             color: white;
-            padding: 10px 15px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            border-radius: 20px;
             font-size: 16px;
-            margin-top: 20px;
+            cursor: pointer;
+            margin: 30px 0;
         }
         .button:hover {
-            background: #ff1493;
+            background: #c2185b;
+        }
+
+        /* Responsif mobile */
+        @media (max-width: 400px) {
+            img, video {
+                width: 90%;
+            }
+            .header {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">Galeri Kenangan</div>
-    
-    <div class="gallery">
-        <div class="gallery-row">
-            <div class="gallery-item"><img src="/images/photo1.jpg" alt="Foto 1"></div>
-            <div class="gallery-item"><img src="/images/photo2.jpg" alt="Foto 2"></div>
-            <div class="gallery-item"><img src="/images/photo3.jpg" alt="Foto 3"></div>
+    <div class="wrapper">
+        <div class="header">Galeri Kenangan</div>
+        
+        <div class="gallery">
+            <div class="gallery-row">
+                <div class="gallery-item"><img src="/images/photo1.jpg" alt="Foto 1"></div>
+                <div class="gallery-item"><img src="/images/photo2.jpg" alt="Foto 2"></div>
+                <div class="gallery-item"><img src="/images/photo3.jpg" alt="Foto 3"></div>
+            </div>
+            <div class="gallery-row">
+                <div class="gallery-item"><video controls><source src="/videos/video1.mp4" type="video/mp4"></video></div>
+                <div class="gallery-item"><video controls><source src="/videos/video2.mp4" type="video/mp4"></video></div>
+            </div>
         </div>
-        <div class="gallery-row">
-            <div class="gallery-item"><video controls><source src="/videos/video1.mp4" type="video/mp4"></video></div>
-            <div class="gallery-item"><video controls><source src="/videos/video2.mp4" type="video/mp4"></video></div>
-        </div>
+        
+        <button class="button" onclick="history.back()">Kembali</button>
     </div>
-    
-    <button class="button" onclick="history.back()">Kembali</button>
 </body>
 </html>
