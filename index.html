@@ -24,7 +24,7 @@
     .gift {
       width: 180px;
       height: 180px;
-      background-image: url('https://cdn-icons-png.flaticon.com/512/2486/2486586.png');
+      background-image: url('gift.png'); /* Nama logo kadonya */
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -44,15 +44,15 @@
     }
 
     p {
-      font-size: 40px; /* Lebih besar lagi */
-      color: red; /* Warna merah seperti request */
+      font-size: 40px;
+      color: red;
       font-weight: bold;
       text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s ease, color 0.3s ease;
     }
 
     p:hover {
-      color: #ff4d4d; /* Merah lebih terang saat hover */
+      color: #ff4d4d;
       transform: scale(1.05);
     }
   </style>
@@ -64,9 +64,9 @@
     <p> 🎁 Buka Kadonya 🎁</p>
   </div>
 
-  <!-- Confetti library -->
+  <!-- Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  
+
   <!-- Background Music -->
   <audio id="bg-music" src="romantic-music.mp3" preload="auto"></audio>
 
@@ -75,13 +75,14 @@
     const bgMusic = document.getElementById('bg-music');
 
     gift.addEventListener('click', () => {
-      // Play music
+      // Play musik
       bgMusic.play();
+      bgMusic.loop = true; // Biar muter terus
 
-      // Hide gift icon (fade out)
+      // Sembunyikan logo gift
       gift.style.opacity = '0';
 
-      // Confetti explosion
+      // Confetti meledak banyak!
       const duration = 5 * 1000; // 5 detik
       const animationEnd = Date.now() + duration;
       const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
@@ -95,8 +96,8 @@
 
         if (timeLeft <= 0) {
           clearInterval(interval);
-          // Redirect setelah confetti
-          window.location.href = "beranda.html"; // Halaman beranda tujuan
+          // Pindah ke halaman beranda sambil tetap muter musik (next step!)
+          window.location.href = "beranda.html";
         }
 
         confetti(Object.assign({}, defaults, {
