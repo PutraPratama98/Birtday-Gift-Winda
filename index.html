@@ -1,127 +1,60 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kado untuk Winda</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      background: linear-gradient(to bottom right, #ffb6c1, #98fb98);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
-
-    .container {
-      text-align: center;
-    }
-
-    .gift {
-      width: 180px;
-      height: 180px;
-      background-image: url('gift.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      margin: 0 auto 30px;
-      cursor: pointer;
-      transition: opacity 0.5s ease, transform 0.3s ease;
-    }
-
-    .gift:hover {
-      transform: scale(1.1);
-    }
-
-    h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
-      color: #ffffff;
-    }
-
-    p {
-      font-size: 40px;
-      color: red;
-      font-weight: bold;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease, color 0.3s ease;
-    }
-
-    p:hover {
-      color: #ff4d4d;
-      transform: scale(1.05);
-    }
-  </style>
-</head>
-<body>
-
-  <div class="container">
-    <div class="gift" id="gift"></div>
-    <p> 🎁 Buka Kadonya 🎁</p>
-  </div>
-
-  <!-- Confetti -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-
-  <!-- Audio -->
-  <audio id="backgroundMusic" src="romantic-music.mp3" loop></audio>
-
-  <script>
-    const gift = document.getElementById('gift');
-    const music = document.getElementById('backgroundMusic');
-
-    gift.addEventListener('click', () => {
-      // Set localStorage untuk menandai musik dimainkan
-      localStorage.setItem('musicPlaying', 'true');
-
-      // Mainkan musik langsung di halaman index.html
-      music.play();
-
-      // Sembunyikan logo gift
-      gift.style.opacity = '0';
-
-      // Confetti meledak banyak!
-      const duration = 5 * 1000; // 5 detik
-      const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
-
-      function randomInRange(min, max) {
-        return Math.random() * (max - min) + min;
-      }
-
-      const interval = setInterval(() => {
-        const timeLeft = animationEnd - Date.now();
-
-        if (timeLeft <= 0) {
-          clearInterval(interval);
-
-          // Setelah confetti selesai, pindah ke halaman beranda
-          window.location.href = "beranda.html";
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Selamat Ulang Tahun Winda</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fbeaff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
-        confetti(Object.assign({}, defaults, {
-          particleCount: 10,
-          origin: {
-            x: randomInRange(0.1, 0.9),
-            y: Math.random() - 0.2
-          }
-        }));
-      }, 200);
-    });
+        #gift-logo {
+            width: 200px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
 
-    // Cek apakah musik sudah berjalan di halaman sebelumnya
-    window.addEventListener('load', () => {
-      if (localStorage.getItem('musicPlaying') === 'true') {
-        music.play().catch((e) => {
-          console.log("Autoplay diblokir, klik dulu untuk play.");
+        #gift-logo:hover {
+            transform: scale(1.1);
+        }
+
+        #content-frame {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Musik akan berjalan di background -->
+    <audio id="bg-music" src="romantic-music1.mp3" loop></audio>
+
+    <!-- Logo kado yang diklik untuk mulai -->
+    <img id="gift-logo" src="gift.png" alt="Klik untuk mulai" />
+
+    <!-- Iframe buat load halaman lain -->
+    <iframe id="content-frame"></iframe>
+
+    <script>
+        const logo = document.getElementById('gift-logo');
+        const music = document.getElementById('bg-music');
+        const iframe = document.getElementById('content-frame');
+
+        logo.addEventListener('click', () => {
+            music.play(); // Putar musik
+            logo.style.display = 'none'; // Sembunyikan logo
+            iframe.style.display = 'block'; // Tampilkan iframe
+            iframe.src = 'beranda.html'; // Load halaman beranda
         });
-      }
-    });
-  </script>
-
+    </script>
 </body>
 </html>
