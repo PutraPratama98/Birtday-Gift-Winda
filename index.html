@@ -24,7 +24,7 @@
     .gift {
       width: 180px;
       height: 180px;
-      background-image: url('gift.png'); /* Nama logo kadonya */
+      background-image: url('gift.png'); /* Nama logo kado */
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -67,18 +67,10 @@
   <!-- Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
-  <!-- Background Music -->
-  <audio id="bg-music" src="romantic-music.mp3" preload="auto"></audio>
-
   <script>
     const gift = document.getElementById('gift');
-    const bgMusic = document.getElementById('bg-music');
 
     gift.addEventListener('click', () => {
-      // Play musik
-      bgMusic.play();
-      bgMusic.loop = true; // Biar muter terus
-
       // Sembunyikan logo gift
       gift.style.opacity = '0';
 
@@ -96,7 +88,7 @@
 
         if (timeLeft <= 0) {
           clearInterval(interval);
-          // Pindah ke halaman beranda sambil tetap muter musik (next step!)
+          // Pindah ke halaman beranda
           window.location.href = "beranda.html";
         }
 
