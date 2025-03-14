@@ -5,40 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kuis Interaktif - Dimas & Winda</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #ffb6c1, #98fb98); /* Gradien dari pink muda ke hijau muda */
-            text-align: center;
+        html, body {
+            height: 100%;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffb6c1, #98fb98);
             color: #333;
         }
+
         .header {
-            background: rgba(255, 255, 255, 0.6); /* Transparan putih */
-            backdrop-filter: blur(5px); /* Efek blur */
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(5px);
             padding: 20px;
             border-radius: 15px;
-            margin: 20px auto;
+            margin: 20px 0;
             width: fit-content;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
+
         .quiz-container {
-            background: rgba(255, 255, 255, 0.8); /* Putih semi-transparan */
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(5px);
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
             max-width: 500px;
-            margin: 20px auto;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Pusatkan konten */
+            gap: 15px; /* Jarak antar elemen */
         }
+
         h1, h2 {
-            color: #e91e63; /* Pink tua */
+            color: #e91e63;
+            margin: 0;
         }
+
         .option {
             display: block;
-            margin: 12px 0;
+            margin: 8px 0;
             padding: 12px;
-            background: #e91e63; /* Pink tua */
+            background: #e91e63;
             color: white;
             border: none;
             border-radius: 8px;
@@ -46,31 +62,43 @@
             width: 100%;
             transition: background-color 0.3s, transform 0.2s;
         }
+
         .option:hover {
-            background: #c2185b; /* Pink lebih gelap */
+            background: #c2185b;
             transform: scale(1.03);
         }
+
         .hidden {
             display: none;
         }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 10px;
+        }
+
         .nav-button {
-            background: #4caf50; /* Hijau segar */
+            background: #4caf50;
             color: white;
             padding: 12px 20px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            margin-top: 15px;
             transition: background-color 0.3s, transform 0.2s;
+            min-width: 120px;
         }
+
         .nav-button:hover {
-            background: #388e3c; /* Hijau lebih gelap */
+            background: #388e3c;
             transform: scale(1.05);
         }
+
         #score {
             font-size: 18px;
             color: #333;
-            margin-top: 20px;
+            margin: 0;
         }
     </style>
 </head>
@@ -80,10 +108,14 @@
     </div>
     <div class="quiz-container">
         <h2 id="question">Loading...</h2>
-        <div id="options"></div>
+        <div id="options" style="width: 100%;"></div>
+
         <p id="score" class="hidden">Skor Kamu: <span id="score-value">0</span></p>
-        <button id="restart" class="hidden nav-button" onclick="restartQuiz()">Main Lagi</button>
-        <button class="nav-button" onclick="goBack()">Kembali</button>
+
+        <div class="nav-buttons">
+            <button id="restart" class="hidden nav-button" onclick="restartQuiz()">Main Lagi</button>
+            <button class="nav-button" onclick="goBack()">Kembali</button>
+        </div>
     </div>
 
     <script>
