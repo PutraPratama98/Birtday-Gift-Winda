@@ -6,11 +6,18 @@
     <title>Hadiah untuk Winda</title>
     <style>
         body {
+            margin: 0;
+            padding: 20px;
             background: linear-gradient(to bottom, #ffb6c1, #98fb98);
             font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             text-align: center;
-            margin: 0;
-            padding: 0;
+        }
+        .wrapper {
+            width: 100%;
         }
         .header {
             position: fixed;
@@ -23,27 +30,28 @@
             font-weight: bold;
             color: #d63384;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
         }
         .container {
-            margin-top: 80px;
+            margin-top: 100px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            gap: 20px;
         }
         .card {
             background: white;
             padding: 20px;
-            margin: 15px;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             width: 300px;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         .card:hover {
             transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
         }
         .button {
             background: #d63384;
@@ -70,25 +78,37 @@
             font-size: 14px;
             cursor: pointer;
         }
+
+        /* Responsif mobile */
+        @media (max-width: 400px) {
+            .card {
+                width: 90%;
+            }
+            .header {
+                font-size: 20px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <button class="back-button" onclick="window.history.back();">Kembali</button>
-        Pilih Hadiah untuk Winda
-    </div>
-    <div class="container">
-        <div class="card" onclick="alert('Kamu memilih Ngedate Romantis!')">
-            <h2>Ngedate Romantis</h2>
-            <p>Menghabiskan waktu bersama dengan suasana romantis.</p>
+    <div class="wrapper">
+        <div class="header">
+            <button class="back-button" onclick="window.history.back();">Kembali</button>
+            Pilih Hadiah untuk Winda
         </div>
-        <div class="card" onclick="alert('Kamu memilih Nonton Bioskop!')">
-            <h2>Nonton Bioskop</h2>
-            <p>Menonton film favorit di bioskop bersama.</p>
-        </div>
-        <div class="card" onclick="alert('Kamu memilih Makan Bersama!')">
-            <h2>Makan Bersama</h2>
-            <p>Menikmati hidangan spesial bersama.</p>
+        <div class="container">
+            <div class="card" onclick="alert('Kamu memilih Ngedate Romantis! 💖')">
+                <h2>💖 Ngedate Romantis</h2>
+                <p>Menghabiskan waktu bersama dengan suasana romantis.</p>
+            </div>
+            <div class="card" onclick="alert('Kamu memilih Nonton Bioskop! 🎬')">
+                <h2>🎬 Nonton Bioskop</h2>
+                <p>Menonton film favorit di bioskop bersama.</p>
+            </div>
+            <div class="card" onclick="alert('Kamu memilih Makan Bersama! 🍽️')">
+                <h2>🍽️ Makan Bersama</h2>
+                <p>Menikmati hidangan spesial bersama.</p>
+            </div>
         </div>
     </div>
 </body>
