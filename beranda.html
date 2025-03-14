@@ -45,7 +45,7 @@
     .grid-menu {
       display: flex;
       flex-direction: row;
-      flex-wrap: nowrap; /* Supaya satu baris aja */
+      flex-wrap: nowrap;
       gap: 20px;
       justify-content: flex-start;
       padding: 10px;
@@ -65,7 +65,7 @@
       width: 120px;
       min-width: 120px;
       height: 120px;
-      flex: 0 0 auto; /* Supaya ukurannya tetap & gak stretch */
+      flex: 0 0 auto;
       transition: background-color 0.3s, transform 0.3s;
     }
 
@@ -144,6 +144,28 @@
   <footer>
     <p>&copy; 2025 Dibuat dengan cinta oleh Dimas 💖</p>
   </footer>
+
+  <!-- Musik Latar -->
+  <audio id="backgroundMusic" src="romantic-music.mp3" loop></audio>
+
+  <script>
+    const backgroundMusic = document.getElementById('backgroundMusic');
+
+    // Cek apakah musik sudah dimainkan sebelumnya
+    if (localStorage.getItem('musicPlaying')) {
+      backgroundMusic.play().catch((e) => {
+        console.log("Autoplay dicegah oleh browser, klik layar untuk memulai musik.");
+      });
+    }
+
+    // Kalau belum ada, aktifkan pemutar musik setelah klik layar pertama
+    document.body.addEventListener('click', () => {
+      if (!localStorage.getItem('musicPlaying')) {
+        backgroundMusic.play();
+        localStorage.setItem('musicPlaying', 'true');
+      }
+    });
+  </script>
 
 </body>
 </html>
