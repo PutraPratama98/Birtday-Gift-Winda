@@ -64,29 +64,15 @@
         <div class="text">🎁 Buka Kadonya 🎁</div>
     </div>
 
-      <!-- Musik akan berjalan di background -->
-    <audio id="bg-music" src="romantic-music1.mp3" loop></audio>
-
-    <!-- Logo kado yang diklik untuk mulai -->
-    <img id="gift-logo" src="gift.png" alt="Klik untuk mulai" />
-
-    <!-- Iframe buat load halaman lain -->
-    <iframe id="content-frame"></iframe>
+    <!-- Musik Background -->
+    <audio id="bg-music" src="bg-music.mp3" preload="auto"></audio>
 
     <!-- Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <script>
         const gift = document.getElementById('gift');
-        const logo = document.getElementById('gift-logo');
-        const music = document.getElementById('bg-music');
-        const iframe = document.getElementById('content-frame');
-
-        logo.addEventListener('click', () => {
-            music.play(); // Putar musik
-            logo.style.display = 'none'; // Sembunyikan logo
-            iframe.style.display = 'block'; // Tampilkan iframe
-            iframe.src = 'beranda.html'; // Load halaman beranda
+        const bgMusic = document.getElementById('bg-music');
 
         gift.addEventListener('click', () => {
             // 1. Memulai musik
