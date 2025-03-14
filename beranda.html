@@ -1,37 +1,54 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Selamat Ulang Tahun Winda</title>
   <style>
     html, body {
-      margin: 0; padding: 0;
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(to bottom, #ffb6c1, #98fb98);
-      color: #333;
       height: 100%;
+      margin: 0;
+      padding: 0;
     }
 
-    header, footer {
+    body {
+      background: linear-gradient(to bottom, #ffb6c1, #98fb98);
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    header {
       background-color: rgba(255, 182, 193, 0.8);
       padding: 20px;
-      text-align: center;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 600px;
     }
 
-    .welcome, .content {
+    .welcome {
       background-color: rgba(255, 255, 255, 0.8);
-      margin: 20px;
+      padding: 30px;
+      margin: 30px auto;
       border-radius: 15px;
-      text-align: center;
-      padding: 20px;
+      max-width: 90%;
+    }
+
+    .grid-menu-container {
+      overflow-x: auto;
+      padding: 10px 0;
     }
 
     .grid-menu {
       display: flex;
-      justify-content: center;
+      flex-direction: row;
+      flex-wrap: nowrap; /* Supaya satu baris aja */
       gap: 20px;
-      flex-wrap: nowrap;
+      justify-content: flex-start;
+      padding: 10px;
     }
 
     .grid-menu a {
@@ -41,14 +58,15 @@
       justify-content: center;
       background-color: #ff69b4;
       color: white;
-      text-decoration: none;
       padding: 20px;
+      text-decoration: none;
       border-radius: 10px;
-      width: 120px;
-      height: 120px;
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-      cursor: pointer;
-      transition: 0.3s;
+      width: 120px;
+      min-width: 120px;
+      height: 120px;
+      flex: 0 0 auto; /* Supaya ukurannya tetap & gak stretch */
+      transition: background-color 0.3s, transform 0.3s;
     }
 
     .grid-menu a:hover {
@@ -62,124 +80,70 @@
       margin-bottom: 10px;
     }
 
-    #playButton {
-      background-color: #ff69b4;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 20px;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
+    footer {
+      background-color: rgba(152, 251, 152, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 600px;
     }
 
-    #playButton:hover {
-      background-color: #ff1493;
+    /* Optional scrollbar style */
+    .grid-menu-container::-webkit-scrollbar {
+      height: 8px;
     }
-
+    .grid-menu-container::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    .grid-menu-container::-webkit-scrollbar-thumb {
+      background: #ff69b4;
+      border-radius: 4px;
+    }
+    .grid-menu-container::-webkit-scrollbar-thumb:hover {
+      background: #ff1493;
+    }
   </style>
 </head>
-
 <body>
-
-  <!-- Musik Latar -->
-  <audio id="bg-music" loop>
-    <source src="romantic-music.mp3" type="audio/mpeg">
-    Browser kamu tidak support audio.
-  </audio>
 
   <header>
     <h1>Selamat Ulang Tahun, Winda! 🎉</h1>
-    <button id="playButton">Putar Musik 🎶</button>
   </header>
 
-  <!-- Menu Navigasi -->
-  <div class="welcome">
+  <main class="welcome">
     <h2>Winda, hari ini adalah hari spesial untukmu!</h2>
     <p>Aku telah menyiapkan sesuatu yang spesial untukmu di website ini. Selamat menikmati!</p>
-
-    <div class="grid-menu">
-      <a href="#" onclick="loadPage('surat')">
-        <img src="assets/surat.png" alt="Surat Cinta">
-        Surat Cinta
-      </a>
-      <a href="#" onclick="loadPage('quotes')">
-        <img src="assets/quotes.png" alt="Quotes">
-        Quotes
-      </a>
-      <a href="#" onclick="loadPage('kuis')">
-        <img src="assets/quiz.png" alt="Quiz">
-        Quiz
-      </a>
-      <a href="#" onclick="loadPage('hadiah')">
-        <img src="assets/gift.png" alt="Hadiah">
-        Hadiah
-      </a>
-      <a href="#" onclick="loadPage('galeri')">
-        <img src="assets/gallery.png" alt="Galeri">
-        Galeri
-      </a>
+    
+    <div class="grid-menu-container">
+      <div class="grid-menu">
+        <a href="surat.html">
+          <img src="surat.png" alt="Surat Cinta">
+          Surat Cinta
+        </a>
+        <a href="quotes.html">
+          <img src="quotes.png" alt="Quotes">
+          Quotes
+        </a>
+        <a href="kuis.html">
+          <img src="quiz.png" alt="Quiz">
+          Quiz
+        </a>
+        <a href="hadiah.html">
+          <img src="gift.png" alt="Hadiah">
+          Hadiah
+        </a>
+        <a href="galeri.html">
+          <img src="gallery.png" alt="Galeri">
+          Galeri
+        </a>
+      </div>
     </div>
-  </div>
 
-  <!-- Konten Halaman -->
-  <div class="content" id="content-area">
-    <h2>Selamat datang!</h2>
-    <p>Pilih menu di atas untuk melihat kejutan spesial 🎁</p>
-  </div>
+  </main>
 
   <footer>
     <p>&copy; 2025 Dibuat dengan cinta oleh Dimas 💖</p>
   </footer>
-
-  <script>
-    // Musik
-    const music = document.getElementById('bg-music');
-    const playButton = document.getElementById('playButton');
-
-    playButton.addEventListener('click', function() {
-      music.play()
-        .then(() => {
-          playButton.style.display = 'none';
-        })
-        .catch(err => {
-          console.log("Gagal memutar musik:", err);
-        });
-    });
-
-    // Fungsi loadPage
-    function loadPage(page) {
-      const content = document.getElementById('content-area');
-
-      // Kamu bisa tambahin animasi atau loading di sini
-      if (page === 'surat') {
-        content.innerHTML = `
-          <h2>Surat Cinta untuk Winda</h2>
-          <p>Sayangku Winda, di hari spesial ini...</p>
-          <p>Semoga kebahagiaan selalu bersamamu 💖</p>
-        `;
-      } else if (page === 'quotes') {
-        content.innerHTML = `
-          <h2>Kata-Kata Spesial</h2>
-          <p>"Kamu adalah alasan aku tersenyum setiap hari."</p>
-        `;
-      } else if (page === 'kuis') {
-        content.innerHTML = `
-          <h2>Quiz Seru!</h2>
-          <p>Ayo coba jawab pertanyaan tentang kita!</p>
-        `;
-      } else if (page === 'hadiah') {
-        content.innerHTML = `
-          <h2>Hadiah untuk Winda 🎁</h2>
-          <p>Ini hadiah spesialku buat kamu!</p>
-        `;
-      } else if (page === 'galeri') {
-        content.innerHTML = `
-          <h2>Galeri Kenangan</h2>
-          <p>Lihat foto-foto indah perjalanan kita bersama ❤️</p>
-        `;
-      }
-    }
-  </script>
 
 </body>
 </html>
