@@ -106,6 +106,12 @@
 </head>
 <body>
 
+  <!-- Background Music -->
+  <audio id="bg-music" autoplay loop>
+    <source src="romantic-music.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung pemutar audio.
+  </audio>
+
   <header>
     <h1>Selamat Ulang Tahun, Winda! 🎉</h1>
   </header>
@@ -144,6 +150,16 @@
   <footer>
     <p>&copy; 2025 Dibuat dengan cinta oleh Dimas 💖</p>
   </footer>
+
+  <script>
+    // Optional: Play on user interaction (untuk browser yang butuh izin klik)
+    const music = document.getElementById('bg-music');
+    document.addEventListener('click', function () {
+      if (music.paused) {
+        music.play().catch(e => console.log("Autoplay gagal: ", e));
+      }
+    });
+  </script>
 
 </body>
 </html>
