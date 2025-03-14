@@ -1,41 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Selamat Ulang Tahun Winda</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kado Spesial untuk Winda</title>
     <style>
         body {
             margin: 0;
-            padding: 0;
-            background-color: #fbeaff;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ffb6c1, #98fb98);
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            height: 100vh;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
         }
 
-        #gift-logo {
-            width: 200px;
+        .gift-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: opacity 1s ease;
         }
 
-        #gift-logo:hover {
-            transform: scale(1.1);
+        .gift-container img {
+            width: 150px;
+            height: 150px;
+            animation: bounce 2s infinite;
         }
 
-        #content-frame {
-            width: 100%;
-            height: 100vh;
-            border: none;
-            display: none;
+        .text {
+            margin-top: 25px;
+            font-size: 28px; /* Lebih besar */
+            color: #e91e63;  /* Warna selaras dengan tema pink */
+            font-weight: bold;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
         }
     </style>
 </head>
 <body>
-    <!-- Musik akan berjalan di background -->
+
+    <div class="gift-container" id="gift">
+        <img src="gift.png" alt="Kado">
+        <div class="text">🎁 Buka Kadonya 🎁</div>
+    </div>
+
+      <!-- Musik akan berjalan di background -->
     <audio id="bg-music" src="romantic-music1.mp3" loop></audio>
 
     <!-- Logo kado yang diklik untuk mulai -->
@@ -44,7 +73,11 @@
     <!-- Iframe buat load halaman lain -->
     <iframe id="content-frame"></iframe>
 
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
     <script>
+        const gift = document.getElementById('gift');
         const logo = document.getElementById('gift-logo');
         const music = document.getElementById('bg-music');
         const iframe = document.getElementById('content-frame');
@@ -54,7 +87,41 @@
             logo.style.display = 'none'; // Sembunyikan logo
             iframe.style.display = 'block'; // Tampilkan iframe
             iframe.src = 'beranda.html'; // Load halaman beranda
+
+        gift.addEventListener('click', () => {
+            // 1. Memulai musik
+            bgMusic.play();
+
+            // 2. Hilangkan tombol kado (fade out)
+            gift.style.opacity = '0';
+
+            // 3. Tampilkan confetti super banyak
+            let duration = 3 * 1000; // 3 detik confetti
+            let animationEnd = Date.now() + duration;
+            let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            let interval = setInterval(function() {
+                let timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    // Redirect setelah confetti selesai
+                    window.location.href = "index.html"; // ganti ke halaman beranda kamu
+                }
+
+                let particleCount = 200 * (timeLeft / duration);
+                // letus confetti ke mana-mana
+                confetti(Object.assign({}, defaults, {
+                    particleCount,
+                    origin: { x: randomInRange(0, 1), y: Math.random() - 0.2 }
+                }));
+            }, 250);
         });
     </script>
+
 </body>
 </html>
