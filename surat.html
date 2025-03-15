@@ -1,148 +1,168 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surat Cinta untuk Winda</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(to bottom, #ffb6c1, #98fb98);
-            text-align: center;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            padding-top: 80px; /* Menambah ruang agar header tidak menindih container */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Surat Cinta untuk Winda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  <style>
+    /* RESET CSS */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .header {
-            position: absolute;
-            top: 20px;
-            color: #d62828;
-            font-size: 30px;
-            font-weight: bold;
-            text-align: center;
-            font-family: 'Pacifico', cursive;
-            background: rgba(255, 255, 255, 0.7);
-            padding: 15px 25px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            border: 2px solid black; /* Mengubah garis tepi menjadi hitam */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            text-decoration: underline;
-        }
+    body {
+      background: linear-gradient(to bottom, #ffb6c1, #98fb98);
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+      text-align: center;
+    }
 
-        .container {
-            max-width: 600px;
-            background: white;
-            padding: 20px 30px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            line-height: 1.6;
-            margin-top: 120px; /* Menambah jarak dari header */
-            border: 5px solid;
-            border-image: linear-gradient(to bottom, #ffb6c1, #98fb98) 1;
-        }
+    .header {
+      font-family: 'Pacifico', cursive;
+      color: #d62828;
+      font-size: 32px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 15px 25px;
+      border-radius: 15px;
+      border: 2px solid black;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      text-decoration: underline;
+      margin-bottom: 40px; /* Jarak ke container */
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 90%;
+    }
 
-        #message {
-            font-family: 'Times New Roman', serif; /* FONT ISI PESAN BERUBAH DI SINI */
-            font-size: 16px;
-            color: #333;
-            min-height: 200px;
-            white-space: pre-line;
-        }
+    .container {
+      width: 90%;
+      max-width: 600px;
+      background: white;
+      padding: 25px 30px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+      line-height: 1.7;
+      border: 4px solid;
+      border-image: linear-gradient(to bottom, #ffb6c1, #98fb98) 1;
+      margin-bottom: 40px; /* Jarak ke button */
+      text-align: center; /* Rata tengah isi text */
+    }
 
-        #message p {
-            margin-bottom: 15px;
-        }
+    #message {
+      font-size: 16px;
+      color: #333;
+      min-height: 200px;
+      white-space: pre-line;
+      font-family: 'Times New Roman', Times, serif; /* Times New Roman */
+    }
 
-        .button-container {
-            margin-top: 20px;
-            text-align: center;
-        }
+    #message p {
+      margin-bottom: 15px;
+    }
 
-        .back-button {
-            background-color: #d62828;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 12px 24px;
-            border: 2px solid black; /* Menambahkan garis tepi hitam */
-            border-radius: 10px;
-            cursor: pointer;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease-in-out;
-            margin-top: 25px;
-        }
+    .button-container {
+      margin-bottom: 40px;
+    }
 
-        .back-button:hover {
-            background-color: #e63946;
-            transform: scale(1.1);
-        }
+    .back-button {
+      background-color: #d62828;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 12px 32px;
+      border: 2px solid black;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease-in-out;
+    }
 
-        .back-button:active {
-            transform: scale(1.05);
-        }
-    </style>
+    .back-button:hover {
+      background-color: #e63946;
+      transform: scale(1.05);
+    }
+
+    .back-button:active {
+      transform: scale(1.02);
+    }
+
+    /* Responsif */
+    @media (max-width: 480px) {
+      .header {
+        font-size: 24px;
+        padding: 10px 15px;
+      }
+
+      .container {
+        padding: 20px 15px;
+      }
+
+      .back-button {
+        font-size: 14px;
+        padding: 10px 24px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="header">🎁Selamat Ulang Tahun🎁<br>🌸Winda Yani Hutasoit🌸</div>
-    <div class="container">
-        <div id="message"></div>
-    </div>
-    <div class="button-container">
-        <button class="back-button" onclick="window.history.back()">⬅️ Kembali</button>
-    </div>
+  <div class="header">🎁 Selamat Ulang Tahun 🎁<br>🌸 Winda Yani Hutasoit 🌸</div>
 
-    <script>
-        const paragraphs = [
-            "Cintaku, di hari istimewa ini, aku ingin mengungkapkan betapa berharganya dirimu dalam hidupku. Kamu adalah anugerah terindah yang pernah Tuhan berikan kepadaku.",
-            "Setiap tawa, setiap cerita, setiap perjuangan yang kita lalui bersama semakin meyakinkanku bahwa kamu adalah seseorang yang pantas aku perjuangkan, apapun yang terjadi.",
-            "Aku bersyukur atas setiap momen yang telah kita lewati, dari pertama kali kita bertemu hingga kini.",
-            "Bersamamu, aku belajar arti ketulusan, kesabaran, dan cinta yang sesungguhnya.",
-            "Kamu bukan hanya cinta dalam hidupku, tapi juga sahabat terbaikku, pendengar setiaku, dan tempatku kembali saat lelah melanda.",
-            "Di hari ulang tahunmu ini, aku berdoa agar setiap langkahmu selalu diberkati, setiap impianmu bisa terwujud, dan kebahagiaan selalu menyertaimu.",
-            "Jangan pernah ragu akan cintaku, karena aku akan selalu ada di sampingmu, mendukungmu, mencintaimu, dan memastikan bahwa kamu selalu tersenyum bahagia.",
-            "🎂🎉💖 Selamat ulang tahun, sayangku! 🎂🎉💖",
-            "Semoga kebahagiaan selalu bersamamu, seperti kamu yang selalu membawa kebahagiaan dalam hidupku.",
-            "💞 Aku mencintaimu, hari ini, esok, dan selamanya. 💞"
-        ];
+  <div class="container">
+    <div id="message"></div>
+  </div>
 
-        let i = 0;
-        let j = 0;
-        const speed = 30;
-        const messageDiv = document.getElementById("message");
+  <div class="button-container">
+    <button class="back-button" onclick="window.history.back()">⬅️ Kembali</button>
+  </div>
 
-        function typeWriter() {
-            if (i < paragraphs.length) {
-                const currentParagraph = paragraphs[i];
-                if (j < currentParagraph.length) {
-                    if (j === 0) {
-                        const p = document.createElement("p");
-                        p.setAttribute("id", "para-" + i);
-                        messageDiv.appendChild(p);
-                    }
-                    const p = document.getElementById("para-" + i);
-                    p.textContent += currentParagraph.charAt(j);
-                    j++;
-                    setTimeout(typeWriter, speed);
-                } else {
-                    i++;
-                    j = 0;
-                    setTimeout(typeWriter, 500);
-                }
-            } else {
-                messageDiv.removeAttribute('style');
-            }
+  <script>
+    const paragraphs = [
+      "Cintaku, di hari istimewa ini, aku ingin mengungkapkan betapa berharganya dirimu dalam hidupku. Kamu adalah anugerah terindah yang pernah Tuhan berikan kepadaku.",
+      "Setiap tawa, setiap cerita, setiap perjuangan yang kita lalui bersama semakin meyakinkanku bahwa kamu adalah seseorang yang pantas aku perjuangkan, apapun yang terjadi.",
+      "Aku bersyukur atas setiap momen yang telah kita lewati, dari pertama kali kita bertemu hingga kini.",
+      "Bersamamu, aku belajar arti ketulusan, kesabaran, dan cinta yang sesungguhnya.",
+      "Kamu bukan hanya cinta dalam hidupku, tapi juga sahabat terbaikku, pendengar setiaku, dan tempatku kembali saat lelah melanda.",
+      "Di hari ulang tahunmu ini, aku berdoa agar setiap langkahmu selalu diberkati, setiap impianmu bisa terwujud, dan kebahagiaan selalu menyertaimu.",
+      "Jangan pernah ragu akan cintaku, karena aku akan selalu ada di sampingmu, mendukungmu, mencintaimu, dan memastikan bahwa kamu selalu tersenyum bahagia.",
+      "🎂🎉💖 Selamat ulang tahun, sayangku! 🎂🎉💖",
+      "Semoga kebahagiaan selalu bersamamu, seperti kamu yang selalu membawa kebahagiaan dalam hidupku.",
+      "💞 Aku mencintaimu, hari ini, esok, dan selamanya. 💞"
+    ];
+
+    let i = 0;
+    let j = 0;
+    const speed = 30;
+    const messageDiv = document.getElementById("message");
+
+    function typeWriter() {
+      if (i < paragraphs.length) {
+        const currentParagraph = paragraphs[i];
+        if (j < currentParagraph.length) {
+          if (j === 0) {
+            const p = document.createElement("p");
+            p.setAttribute("id", "para-" + i);
+            messageDiv.appendChild(p);
+          }
+          const p = document.getElementById("para-" + i);
+          p.textContent += currentParagraph.charAt(j);
+          j++;
+          setTimeout(typeWriter, speed);
+        } else {
+          i++;
+          j = 0;
+          setTimeout(typeWriter, 500);
         }
+      } else {
+        messageDiv.removeAttribute('style');
+      }
+    }
 
-        window.onload = typeWriter;
-    </script>
+    window.onload = typeWriter;
+  </script>
 </body>
 </html>
