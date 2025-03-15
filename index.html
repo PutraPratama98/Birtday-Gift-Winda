@@ -137,8 +137,6 @@
 </head>
 <body>
 
-  <!-- Musik Background -->
-  <audio id="bg-music" src="romantic-music1.mp3" preload="auto" loop></audio>
   <!-- Suara letusan confetti -->
   <audio id="pop-sound" src="pop.mp3" preload="auto"></audio>
 
@@ -154,7 +152,6 @@
   <script>
     const gift = document.getElementById('gift');
     const openButton = document.getElementById('open-button');
-    const bgMusic = document.getElementById('bg-music');
     const popSound = document.getElementById('pop-sound');
     let confettiStarted = false;
 
@@ -185,10 +182,6 @@
     openButton.addEventListener('click', () => {
       if (confettiStarted) return;
       confettiStarted = true;
-
-      localStorage.setItem("playMusic", "true");
-
-      bgMusic.play();
 
       gift.style.opacity = '0';
 
