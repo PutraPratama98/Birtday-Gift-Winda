@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surat Cinta untuk Winda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <style>
         body {
             background: linear-gradient(to bottom, #ffb6c1, #98fb98);
@@ -12,8 +13,26 @@
             padding: 20px;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
+        }
+
+        .header {
+            position: absolute;
+            top: 20px;
+            color: #d62828;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            font-family: 'Pacifico', cursive;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border: 2px solid #d62828;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .container {
@@ -26,12 +45,6 @@
             line-height: 1.6;
         }
 
-        h1 {
-            color: #e91e63;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
         #message {
             font-size: 16px;
             color: #333;
@@ -40,11 +53,12 @@
         }
 
         #message p {
-            margin-bottom: 15px; /* jarak antar paragraf */
+            margin-bottom: 15px;
         }
 
         .button-container {
             margin-top: 20px;
+            text-align: center;
         }
 
         button {
@@ -56,29 +70,15 @@
             cursor: pointer;
             font-size: 16px;
         }
-
-        /* Optional: cursor effect while typing */
-        #message::after {
-            content: '|';
-            animation: blink 1s infinite;
-            display: inline-block;
-            margin-left: 2px;
-            color: #e91e63;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
     </style>
 </head>
 <body>
+    <div class="header">🎁Selamat Ulang Tahun🎁<br>🌸Winda Yani Hutasoit🌸</div>
     <div class="container">
-        <h1>🎁Selamat Ulang Tahun🎁<br>🌸Winda Yani Hutasoit🌸</h1>
         <div id="message"></div>
-        <div class="button-container">
-            <button onclick="window.history.back()">Kembali</button>
-        </div>
+    </div>
+    <div class="button-container">
+        <button onclick="window.history.back()">Kembali</button>
     </div>
 
     <script>
@@ -97,7 +97,7 @@
 
         let i = 0;
         let j = 0;
-        const speed = 30; // Kecepatan mengetik per huruf
+        const speed = 30;
         const messageDiv = document.getElementById("message");
 
         function typeWriter() {
@@ -105,7 +105,6 @@
                 const currentParagraph = paragraphs[i];
                 if (j < currentParagraph.length) {
                     if (j === 0) {
-                        // Mulai paragraf baru
                         const p = document.createElement("p");
                         p.setAttribute("id", "para-" + i);
                         messageDiv.appendChild(p);
@@ -117,12 +116,9 @@
                 } else {
                     i++;
                     j = 0;
-                    setTimeout(typeWriter, 500); // jeda sedikit sebelum lanjut ke paragraf berikutnya
+                    setTimeout(typeWriter, 500);
                 }
             } else {
-                messageDiv.style.setProperty('--after-content', 'none');
-                messageDiv.style.animation = 'none';
-                messageDiv.style.borderRight = 'none';
                 messageDiv.removeAttribute('style');
             }
         }
