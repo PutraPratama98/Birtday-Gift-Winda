@@ -83,7 +83,6 @@
       z-index: 9999;
     }
 
-    /* Animasi balon */
     .balloon {
       position: fixed;
       bottom: -100px;
@@ -153,29 +152,29 @@
     const gift = document.getElementById('gift');
     const openButton = document.getElementById('open-button');
     const popSound = document.getElementById('pop-sound');
+
     let confettiStarted = false;
+
+    // Atur volume suara pop lebih pelan
+    popSound.volume = 0.3; // Nilai antara 0 (paling kecil) sampai 1 (paling besar)
 
     function createBalloon() {
       const balloon = document.createElement('img');
-      // Gambar balon, kamu bisa ganti linknya dengan gambar lain
       balloon.src = 'https://png.pngtree.com/png-vector/20221006/ourmid/pngtree-birthday-ornament-png-image_6256914.png';
       balloon.classList.add('balloon');
       balloon.style.left = Math.random() * window.innerWidth + 'px';
-      balloon.style.width = 40 + Math.random() * 20 + 'px'; // Ukuran acak antara 40-60px
-      balloon.style.animationDuration = (5 + Math.random() * 5) + 's'; // Kecepatan acak
+      balloon.style.width = 40 + Math.random() * 20 + 'px';
+      balloon.style.animationDuration = (5 + Math.random() * 5) + 's';
 
       document.body.appendChild(balloon);
 
-      // Hapus balon setelah selesai animasi
       setTimeout(() => {
         balloon.remove();
       }, 10000);
     }
 
     function startBalloons() {
-      // Buat interval balon melayang
       const balloonInterval = setInterval(createBalloon, 300);
-      // Stop setelah 5 detik (atau sesuai durasi confetti)
       setTimeout(() => clearInterval(balloonInterval), 5000);
     }
 
@@ -185,9 +184,9 @@
 
       gift.style.opacity = '0';
 
-      let duration = 7000;
-      let animationEnd = Date.now() + duration;
-      let defaults = {
+      const duration = 7000;
+      const animationEnd = Date.now() + duration;
+      const defaults = {
         startVelocity: 30,
         spread: 360,
         ticks: 60,
@@ -198,29 +197,35 @@
         return Math.random() * (max - min) + min;
       }
 
-      // Mulai efek balon melayang setelah klik
+      // Mulai balon melayang
       startBalloons();
 
-      let interval = setInterval(function() {
-        let timeLeft = animationEnd - Date.now();
+      // Efek confetti dan suara pop dengan jeda yang lebih smooth
+      const interval = setInterval(() => {
+        const timeLeft = animationEnd - Date.now();
 
         if (timeLeft <= 0) {
           clearInterval(interval);
           window.location.href = "beranda.html";
         }
 
+        // Jalankan confetti
         confetti(Object.assign({}, defaults, {
-          particleCount: 150,
+          particleCount: 100,
           origin: {
             x: randomInRange(0, 1),
             y: Math.random() - 0.2
           }
         }));
 
-        // Play pop sound on each burst
+        // Putar suara pop setiap kali confetti muncul, lebih jarang dan volume pelan
+        if (!popSound.paused) {
+          popSound.pause();
+        }
         popSound.currentTime = 0;
         popSound.play();
-      }, 250);
+
+      }, 700); // Interval suara pop dibuat 700ms biar tidak terlalu sering
     });
   </script>
 
