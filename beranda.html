@@ -87,9 +87,21 @@
       margin: 20px auto;
       max-width: 600px;
     }
+
+    /* Styling untuk iframe agar tidak terlihat */
+    #musicFrame {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      border: none;
+      opacity: 0;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Tambahkan iframe untuk memutar musik tanpa refresh -->
+  <iframe id="musicFrame" src="music.html"></iframe>
 
   <header>
     <h1> 🎉 Selamat Ulang Tahun, Winda Yani Hutasoit 🎉</h1>
@@ -129,26 +141,5 @@
     <p>&copy; 2025 Dibuat dengan cinta oleh Dimas 💖</p>
   </footer>
 
-  <!-- Audio player -->
-  <audio id="backgroundMusic" src="romantic-music1.mp3" loop></audio>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const backgroundMusic = document.getElementById('backgroundMusic');
-
-      if (!localStorage.getItem('musicPlaying')) {
-        localStorage.setItem('musicPlaying', 'true');
-        backgroundMusic.play().catch(err => {
-          console.log("Browser membutuhkan interaksi pengguna untuk memainkan musik.", err);
-        });
-      } else {
-        backgroundMusic.play();
-      }
-
-      document.body.addEventListener('click', () => {
-        backgroundMusic.play();
-      });
-    });
-  </script>
 </body>
 </html>
