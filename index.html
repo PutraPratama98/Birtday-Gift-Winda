@@ -1,197 +1,235 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kado Spesial untuk Winda</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kado Spesial untuk Winda</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap');
 
-        body {
-            margin: 0;
-            height: 100vh;
-            background: linear-gradient(to bottom, #ffb6c1, #98fb98);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-            font-family: 'Poppins', sans-serif;
-        }
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom, #ffb6c1, #98fb98);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      font-family: 'Poppins', sans-serif;
+    }
 
-        .gift-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            cursor: pointer;
-            transition: opacity 1s ease;
-            background: rgba(255, 255, 255, 0.15);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            animation: fadeIn 1.5s ease;
-        }
+    .gift-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      transition: opacity 1s ease;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1.5s ease;
+    }
 
-        .gift-container img {
-            width: 160px;
-            height: 160px;
-            animation: bounce 2s infinite;
-            transition: transform 0.3s ease;
-        }
+    .gift-container img {
+      width: 160px;
+      height: 160px;
+      animation: bounce 2s infinite;
+      transition: transform 0.3s ease;
+    }
 
-        .gift-container:hover img {
-            transform: scale(1.1);
-        }
+    .gift-container:hover img {
+      transform: scale(1.1);
+    }
 
-        .text {
-            margin-top: 25px;
-            font-size: 20px;
-            font-weight: 600;
-        }
+    .open-button {
+      background-color: #d62828;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease-in-out;
+      margin-top: 25px;
+    }
 
-        /* Tombol Buka Kado */
-        .open-button {
-            background-color: #d62828; /* Merah manis, sama kayak teks ulang tahun */
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease-in-out;
-        }
+    .open-button:hover {
+      background-color: #e63946;
+      transform: scale(1.1);
+    }
 
-        .open-button:hover {
-            background-color: #e63946; /* Warna lebih terang saat hover */
-            transform: scale(1.1);
-        }
+    .open-button:active {
+      transform: scale(1.05);
+    }
 
-        .open-button:active {
-            transform: scale(1.05);
-        }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.5rem;
+      color: #d62828;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
 
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
-            }
-        }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+    }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(-20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
+    /* Animasi balon */
+    .balloon {
+      position: fixed;
+      bottom: -100px;
+      width: 50px;
+      z-index: 2;
+      pointer-events: none;
+      animation: floatUp linear forwards;
+    }
 
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 9999;
-        }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
 
-        h1 {
-            font-family: 'Pacifico', cursive;
-            font-size: 2.5rem;
-            color: #d62828;
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-        }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
 
-        /* Responsive tweaks */
-        @media (max-width: 600px) {
-            .gift-container {
-                padding: 20px;
-            }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
 
-            .gift-container img {
-                width: 120px;
-                height: 120px;
-            }
+    @media (max-width: 600px) {
+      .gift-container {
+        padding: 20px;
+      }
 
-            h1 {
-                font-size: 2rem;
-            }
+      .gift-container img {
+        width: 120px;
+        height: 120px;
+      }
 
-            .open-button {
-                font-size: 16px;
-                padding: 10px 20px;
-            }
-        }
-    </style>
+      h1 {
+        font-size: 2rem;
+      }
+
+      .open-button {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Musik Background -->
-    <audio id="bg-music" src="romantic-music1.mp3" preload="auto" loop></audio>
+  <!-- Musik Background -->
+  <audio id="bg-music" src="romantic-music1.mp3" preload="auto" loop></audio>
+  <!-- Suara letusan confetti -->
+  <audio id="pop-sound" src="pop.mp3" preload="auto"></audio>
 
-    <div class="gift-container" id="gift">
-        <h1>Selamat Ulang Tahun, Winda!</h1>
-        <img src="gift.png" alt="Kado">
-        <button class="open-button" id="open-button">🎁 Buka Kadonya 🎁</button>
-    </div>
+  <div class="gift-container" id="gift">
+    <h1>Selamat Ulang Tahun, Winda!</h1>
+    <img src="gift.png" alt="Kado" />
+    <button class="open-button" id="open-button">🎁 Buka Kadonya 🎁</button>
+  </div>
 
-    <!-- Confetti Library -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-    <script>
-        const gift = document.getElementById('gift');
-        const openButton = document.getElementById('open-button');
-        const bgMusic = document.getElementById('bg-music');
-        let confettiStarted = false;
+  <script>
+    const gift = document.getElementById('gift');
+    const openButton = document.getElementById('open-button');
+    const bgMusic = document.getElementById('bg-music');
+    const popSound = document.getElementById('pop-sound');
+    let confettiStarted = false;
 
-        openButton.addEventListener('click', () => {
-            if (confettiStarted) return; // Supaya cuma bisa klik sekali
-            confettiStarted = true;
+    function createBalloon() {
+      const balloon = document.createElement('img');
+      // Gambar balon, kamu bisa ganti linknya dengan gambar lain
+      balloon.src = 'https://png.pngtree.com/png-vector/20221006/ourmid/pngtree-birthday-ornament-png-image_6256914.png';
+      balloon.classList.add('balloon');
+      balloon.style.left = Math.random() * window.innerWidth + 'px';
+      balloon.style.width = 40 + Math.random() * 20 + 'px'; // Ukuran acak antara 40-60px
+      balloon.style.animationDuration = (5 + Math.random() * 5) + 's'; // Kecepatan acak
 
-            // Simpan flag musik di localStorage (biar tetap nyala pas pindah halaman)
-            localStorage.setItem("playMusic", "true");
+      document.body.appendChild(balloon);
 
-            // Play music
-            bgMusic.play();
+      // Hapus balon setelah selesai animasi
+      setTimeout(() => {
+        balloon.remove();
+      }, 10000);
+    }
 
-            // Fade out tombol buka kado
-            gift.style.opacity = '0';
+    function startBalloons() {
+      // Buat interval balon melayang
+      const balloonInterval = setInterval(createBalloon, 300);
+      // Stop setelah 5 detik (atau sesuai durasi confetti)
+      setTimeout(() => clearInterval(balloonInterval), 5000);
+    }
 
-            // Confetti party!
-            let duration = 3000; // 3 detik
-            let animationEnd = Date.now() + duration;
-            let defaults = {
-                startVelocity: 30,
-                spread: 360,
-                ticks: 60,
-                zIndex: 9999
-            };
+    openButton.addEventListener('click', () => {
+      if (confettiStarted) return;
+      confettiStarted = true;
 
-            function randomInRange(min, max) {
-                return Math.random() * (max - min) + min;
-            }
+      localStorage.setItem("playMusic", "true");
 
-            let interval = setInterval(function() {
-                let timeLeft = animationEnd - Date.now();
+      bgMusic.play();
 
-                if (timeLeft <= 0) {
-                    clearInterval(interval);
-                    // Redirect setelah confetti selesai
-                    window.location.href = "beranda.html";
-                }
+      gift.style.opacity = '0';
 
-                confetti(Object.assign({}, defaults, {
-                    particleCount: 150,
-                    origin: {
-                        x: randomInRange(0, 1),
-                        y: Math.random() - 0.2
-                    }
-                }));
-            }, 250);
-        });
-    </script>
+      let duration = 7000;
+      let animationEnd = Date.now() + duration;
+      let defaults = {
+        startVelocity: 30,
+        spread: 360,
+        ticks: 60,
+        zIndex: 9999
+      };
+
+      function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      // Mulai efek balon melayang setelah klik
+      startBalloons();
+
+      let interval = setInterval(function() {
+        let timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+          clearInterval(interval);
+          window.location.href = "beranda.html";
+        }
+
+        confetti(Object.assign({}, defaults, {
+          particleCount: 150,
+          origin: {
+            x: randomInRange(0, 1),
+            y: Math.random() - 0.2
+          }
+        }));
+
+        // Play pop sound on each burst
+        popSound.currentTime = 0;
+        popSound.play();
+      }, 250);
+    });
+  </script>
 
 </body>
 </html>
