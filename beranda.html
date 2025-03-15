@@ -87,20 +87,6 @@
       margin: 20px auto;
       max-width: 600px;
     }
-
-    .grid-menu-container::-webkit-scrollbar {
-      height: 8px;
-    }
-    .grid-menu-container::-webkit-scrollbar-track {
-      background: #f1f1f1;
-    }
-    .grid-menu-container::-webkit-scrollbar-thumb {
-      background: #ff69b4;
-      border-radius: 4px;
-    }
-    .grid-menu-container::-webkit-scrollbar-thumb:hover {
-      background: #ff1493;
-    }
   </style>
 </head>
 <body>
@@ -144,33 +130,25 @@
   </footer>
 
   <!-- Audio player -->
-  <audio id="backgroundMusic" src="romantic-music12.mp3" loop></audio>
+  <audio id="backgroundMusic" src="romantic-music1.mp3" loop></audio>
 
   <script>
-    const backgroundMusic = document.getElementById('backgroundMusic');
+    document.addEventListener("DOMContentLoaded", function() {
+      const backgroundMusic = document.getElementById('backgroundMusic');
 
-    // Cek apakah user udah klik tombol buka kado di halaman sebelumnya
-    const musicStatus = localStorage.getItem('musicPlaying');
-
-    // Kalau sudah, langsung putar musiknya
-    if (musicStatus === 'true') {
-      playMusic();
-    }
-
-    // Kalau browser butuh klik user, pasang listener
-    document.body.addEventListener('click', playMusic);
-
-    function playMusic() {
-      backgroundMusic.play().then(() => {
-        console.log("Musik diputar");
+      if (!localStorage.getItem('musicPlaying')) {
         localStorage.setItem('musicPlaying', 'true');
-        // Hapus event listener setelah musik berhasil play
-        document.body.removeEventListener('click', playMusic);
-      }).catch(err => {
-        console.log("Browser butuh klik user buat play musik:", err);
-      });
-    }
-  </script>
+        backgroundMusic.play().catch(err => {
+          console.log("Browser membutuhkan interaksi pengguna untuk memainkan musik.", err);
+        });
+      } else {
+        backgroundMusic.play();
+      }
 
+      document.body.addEventListener('click', () => {
+        backgroundMusic.play();
+      });
+    });
+  </script>
 </body>
 </html>
