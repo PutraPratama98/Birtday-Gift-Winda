@@ -3,29 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kuis Cinta Dimas & Winda</title>
-
-  <!-- Link Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
+  <title>Kuis Cinta Dimas & Winda 💖</title>
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+    html, body {
+      height: 100%;
       margin: 0;
-      height: 100vh;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background: linear-gradient(to bottom, #ffb6c1, #98fb98);
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+
+    .container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      font-family: 'Poppins', sans-serif;
+      gap: 20px;
+      text-align: center;
     }
 
     .header {
       background: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(5px);
-      padding: 20px;
+      padding: 20px 40px;
       border-radius: 15px;
-      margin: 20px 0;
-      width: fit-content;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       border: 2px solid black;
     }
@@ -34,19 +48,30 @@
       font-family: 'Pacifico', cursive;
       font-size: 32px;
       color: #e91e63;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      text-decoration: underline;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
       margin: 0;
+      text-decoration: underline;
+      text-decoration-color: #e91e63;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 2px;
+    }
+
+    /* Border gradasi lebih tebal */
+    .quiz-border {
+      background: linear-gradient(to bottom, #ffb6c1, #98fb98);
+      padding: 6px; /* Tebal garis tepi */
+      border-radius: 24px;
+      width: fit-content;
     }
 
     .quiz-container {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(5px);
       padding: 30px;
-      border-radius: 15px;
+      border-radius: 18px; /* Kurangi radius biar border luar kelihatan */
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      max-width: 500px;
-      width: 90%;
+      max-width: 480px;
+      width: 90vw;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -76,18 +101,36 @@
       transform: scale(1.03);
     }
 
-    .hidden {
-      display: none;
-    }
-
     #score {
       font-size: 18px;
       color: #333;
       margin: 0;
     }
 
-    /* Tombol Restart di dalam Quiz Container */
-    .restart-button {
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      gap: 10px;
+    }
+
+    .nav-button {
+      background: #4caf50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      min-width: 120px;
+    }
+
+    .nav-button:hover {
+      background: #388e3c;
+      transform: scale(1.05);
+    }
+
+    .back-button {
       background-color: #d62828;
       color: white;
       font-size: 18px;
@@ -98,32 +141,7 @@
       cursor: pointer;
       box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
       transition: all 0.3s ease-in-out;
-      margin-top: 10px;
-    }
-
-    .restart-button:hover {
-      background-color: #e63946;
-      transform: scale(1.1);
-    }
-
-    .restart-button:active {
-      transform: scale(1.05);
-    }
-
-    /* Tombol Kembali di Luar Quiz Container */
-    .back-button {
-      background-color: #d62828;
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
-      padding: 12px 24px;
-      border: 2px solid black; /* Garis tepi hitam */
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease-in-out;
-      margin: 30px 0;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 8px;
     }
@@ -137,9 +155,8 @@
       transform: scale(1.05);
     }
 
-    .back-button img {
-      width: 20px;
-      height: 20px;
+    .hidden {
+      display: none;
     }
 
     @media (max-width: 600px) {
@@ -147,116 +164,125 @@
         font-size: 24px;
       }
 
-      .option {
-        font-size: 16px;
+      .quiz-container {
+        padding: 20px;
       }
 
-      .restart-button, .back-button {
+      .option {
+        padding: 10px;
+      }
+
+      .back-button {
         font-size: 16px;
         padding: 10px 20px;
       }
     }
   </style>
 </head>
-
 <body>
 
-  <div class="header">
-    <h1>Kuis Cinta Dimas & Winda 💖</h1>
+  <div class="container">
+    <div class="header">
+      <h1>Kuis Cinta Dimas & Winda 💖</h1>
+    </div>
+
+    <div class="quiz-border">
+      <div class="quiz-container">
+        <h2 id="question">Loading...</h2>
+        <div id="options" style="width: 100%;"></div>
+
+        <p id="score" class="hidden">Skor Kamu: <span id="score-value">0</span></p>
+
+        <div class="nav-buttons">
+          <button id="restart" class="hidden nav-button" onclick="restartQuiz()">Main Lagi</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="back-button" onclick="goBack()">🔙 Kembali</button>
   </div>
-
-  <div class="quiz-container">
-    <h2 id="question">Loading...</h2>
-    <div id="options" style="width: 100%;"></div>
-
-    <p id="score" class="hidden">Skor Kamu: <span id="score-value">0</span></p>
-
-    <!-- Tombol Restart di dalam container -->
-    <button id="restart" class="hidden restart-button" onclick="restartQuiz()">Main Lagi</button>
-  </div>
-
-  <!-- Tombol Kembali di luar container -->
-<button class="back-button" onclick="goBack()">
-  🔙 Kembali
-</button>
-
 
   <script>
     const questions = [
       {
-        question: "Di mana pertama kali aku dan Winda bertemu?",
-        options: ["Mall", "Kantor", "Pusat Kota Jakarta", "Cafe"],
-        answer: "Pusat Kota Jakarta"
+        question: "Siapa nama lengkap Dimas?",
+        options: ["Dimas Pratama", "Dimas Saputra", "Dimas Aditya", "Dimas Bagus"],
+        answer: 1
       },
       {
-        question: "Apa kesamaan yang membuat aku tertarik dengan Winda?",
-        options: [
-          "Sama-sama suka drama Korea",
-          "Sama-sama suka One Piece",
-          "Sama-sama suka kopi",
-          "Sama-sama suka musik jazz"
-        ],
-        answer: "Sama-sama suka One Piece"
+        question: "Dimana pertama kali Dimas dan Winda bertemu?",
+        options: ["Sekolah", "Kampus", "Kantor", "Mall"],
+        answer: 0
       },
       {
-        question: "Siapa yang pertama kali mengenalkan aku dengan Winda?",
-        options: ["Mas Faisal", "Mas Ari", "Bunda", "Sudendra"],
-        answer: "Mas Ari"
+        question: "Apa warna favorit Winda?",
+        options: ["Merah", "Biru", "Pink", "Hijau"],
+        answer: 2
       }
     ];
 
     let currentQuestion = 0;
     let score = 0;
 
-    const questionElement = document.getElementById("question");
-    const optionsElement = document.getElementById("options");
-    const scoreElement = document.getElementById("score");
-    const scoreValue = document.getElementById("score-value");
-    const restartButton = document.getElementById("restart");
+    const questionEl = document.getElementById('question');
+    const optionsEl = document.getElementById('options');
+    const scoreEl = document.getElementById('score');
+    const scoreValueEl = document.getElementById('score-value');
+    const restartButton = document.getElementById('restart');
 
     function loadQuestion() {
-      if (currentQuestion < questions.length) {
-        questionElement.textContent = questions[currentQuestion].question;
-        optionsElement.innerHTML = "";
+      const current = questions[currentQuestion];
+      questionEl.textContent = current.question;
+      optionsEl.innerHTML = "";
 
-        questions[currentQuestion].options.forEach(option => {
-          const button = document.createElement("button");
-          button.textContent = option;
-          button.className = "option";
-          button.onclick = () => checkAnswer(option);
-          optionsElement.appendChild(button);
-        });
-      } else {
-        showResult();
-      }
+      current.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.classList.add('option');
+        button.textContent = option;
+        button.onclick = () => selectOption(index);
+        optionsEl.appendChild(button);
+      });
     }
 
-    function checkAnswer(selected) {
-      if (selected === questions[currentQuestion].answer) {
+    function selectOption(index) {
+      const current = questions[currentQuestion];
+
+      if (index === current.answer) {
         score++;
       }
+
       currentQuestion++;
-      loadQuestion();
+
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        showScore();
+      }
     }
 
-    function showResult() {
-      questionElement.textContent = "Kuis Selesai! 🎉";
-      optionsElement.innerHTML = "";
-      scoreElement.classList.remove("hidden");
-      scoreValue.textContent = `${score} dari ${questions.length}`;
-      restartButton.classList.remove("hidden");
+    function showScore() {
+      questionEl.classList.add('hidden');
+      optionsEl.classList.add('hidden');
+      scoreEl.classList.remove('hidden');
+      restartButton.classList.remove('hidden');
+
+      scoreValueEl.textContent = score;
     }
 
     function restartQuiz() {
       currentQuestion = 0;
       score = 0;
-      scoreElement.classList.add("hidden");
-      restartButton.classList.add("hidden");
+
+      questionEl.classList.remove('hidden');
+      optionsEl.classList.remove('hidden');
+      scoreEl.classList.add('hidden');
+      restartButton.classList.add('hidden');
+
       loadQuestion();
     }
 
     function goBack() {
-      window.history.back();
+      window.location.href = "index.html";
     }
 
     loadQuestion();
