@@ -40,7 +40,7 @@
         }
 
         #message p {
-            margin-bottom: 15px; /* jarak antar paragraf */
+            margin-bottom: 15px;
         }
 
         .button-container {
@@ -57,7 +57,6 @@
             font-size: 16px;
         }
 
-        /* Optional: cursor effect while typing */
         #message::after {
             content: '|';
             animation: blink 1s infinite;
@@ -73,6 +72,9 @@
     </style>
 </head>
 <body>
+    <!-- Tambahkan iframe untuk memutar musik tanpa refresh -->
+    <iframe src="music.html" allow="autoplay" style="display: none;"></iframe>
+    
     <div class="container">
         <h1>🎁Selamat Ulang Tahun🎁<br>🌸Winda Yani Hutasoit🌸</h1>
         <div id="message"></div>
@@ -97,7 +99,7 @@
 
         let i = 0;
         let j = 0;
-        const speed = 30; // Kecepatan mengetik per huruf
+        const speed = 30;
         const messageDiv = document.getElementById("message");
 
         function typeWriter() {
@@ -105,7 +107,6 @@
                 const currentParagraph = paragraphs[i];
                 if (j < currentParagraph.length) {
                     if (j === 0) {
-                        // Mulai paragraf baru
                         const p = document.createElement("p");
                         p.setAttribute("id", "para-" + i);
                         messageDiv.appendChild(p);
@@ -117,7 +118,7 @@
                 } else {
                     i++;
                     j = 0;
-                    setTimeout(typeWriter, 500); // jeda sedikit sebelum lanjut ke paragraf berikutnya
+                    setTimeout(typeWriter, 500);
                 }
             } else {
                 messageDiv.style.setProperty('--after-content', 'none');
