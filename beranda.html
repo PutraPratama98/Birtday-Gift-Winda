@@ -88,20 +88,22 @@
       max-width: 600px;
     }
 
-    /* Styling untuk iframe agar tidak terlihat */
-    #musicFrame {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      border: none;
-      opacity: 0;
+    .grid-menu-container::-webkit-scrollbar {
+      height: 8px;
+    }
+    .grid-menu-container::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    .grid-menu-container::-webkit-scrollbar-thumb {
+      background: #ff69b4;
+      border-radius: 4px;
+    }
+    .grid-menu-container::-webkit-scrollbar-thumb:hover {
+      background: #ff1493;
     }
   </style>
 </head>
 <body>
-
-  <!-- Tambahkan iframe untuk memutar musik tanpa refresh -->
-  <iframe src="music.html" allow="autoplay" style="display: none;"></iframe>
 
   <header>
     <h1> 🎉 Selamat Ulang Tahun, Winda Yani Hutasoit 🎉</h1>
@@ -140,6 +142,35 @@
   <footer>
     <p>&copy; 2025 Dibuat dengan cinta oleh Dimas 💖</p>
   </footer>
+
+  <!-- Audio player -->
+  <audio id="backgroundMusic" src="romantic-music12.mp3" loop></audio>
+
+  <script>
+    const backgroundMusic = document.getElementById('backgroundMusic');
+
+    // Cek apakah user udah klik tombol buka kado di halaman sebelumnya
+    const musicStatus = localStorage.getItem('musicPlaying');
+
+    // Kalau sudah, langsung putar musiknya
+    if (musicStatus === 'true') {
+      playMusic();
+    }
+
+    // Kalau browser butuh klik user, pasang listener
+    document.body.addEventListener('click', playMusic);
+
+    function playMusic() {
+      backgroundMusic.play().then(() => {
+        console.log("Musik diputar");
+        localStorage.setItem('musicPlaying', 'true');
+        // Hapus event listener setelah musik berhasil play
+        document.body.removeEventListener('click', playMusic);
+      }).catch(err => {
+        console.log("Browser butuh klik user buat play musik:", err);
+      });
+    }
+  </script>
 
 </body>
 </html>
