@@ -34,20 +34,26 @@
             text-decoration: underline;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
+
+        /* Bungkus box biar ada gradasi border */
+        .quote-border {
+            padding: 5px; /* Ketebalan border */
+            border-radius: 25px;
+            background: linear-gradient(to bottom, #ffb6c1, #98fb98);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
         .quote-box {
             background: #f0fff0;
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            max-width: 500px;
-            margin: 20px;
             font-size: 22px;
             color: #000000;
             font-family: 'Times New Roman', Times, serif;
             font-style: italic;
-            border: 2px solid #ffb6c1;
             position: relative;
         }
+
         .quote-box::before, .quote-box::after {
             content: '\201C';
             font-size: 40px;
@@ -63,6 +69,7 @@
             bottom: -10px;
             right: -10px;
         }
+
         .button-container {
             display: flex;
             gap: 10px;
@@ -82,19 +89,25 @@
         }
         button:hover {
             background: darkred;
-            transform: scale(1.05); /* Efek sedikit membesar pas hover */
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
     <div class="header"><span>" Quotes untuk Winda "</span></div>
-    <div class="quote-box" id="quote-box">Cinta sejati adalah tentang memahami dan menghargai, bukan mengubah.</div>
-    
+
+    <!-- Pembungkus yang punya border gradasi -->
+    <div class="quote-border">
+        <div class="quote-box" id="quote-box">
+            Cinta sejati adalah tentang memahami dan menghargai, bukan mengubah.
+        </div>
+    </div>
+
     <div class="button-container">
         <button onclick="prevQuote()">⬅️ Sebelumnya</button>
         <button onclick="nextQuote()">Selanjutnya ➡️</button>
     </div>
-    
+
     <button onclick="goBack()" style="margin-top: 20px;">🔙 Kembali</button>
 
     <script>
