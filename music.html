@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Music Player</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
 </head>
 <body>
-  <audio id="backgroundMusic" src="romantic-music1.mp3" autoplay loop></audio>
+    <audio id="backgroundMusic" src="romantic-music1.mp3" autoplay loop></audio>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const music = document.getElementById('backgroundMusic');
+            music.play().catch(err => console.log("Autoplay dicegah browser", err));
+        });
+    </script>
 </body>
 </html>
