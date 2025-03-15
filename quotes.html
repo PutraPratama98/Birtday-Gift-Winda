@@ -17,27 +17,30 @@
             text-align: center;
             margin: 0;
         }
+
+        /* HEADER */
         .header {
-            position: absolute;
-            top: 20px;
             background: rgba(255, 255, 255, 0.5);
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 30px;
+            padding: 10px 30px;
+            border-radius: 15px;
+            font-size: 28px;
             font-weight: bold;
             color: #d62828;
             backdrop-filter: blur(5px);
             border: 3px solid black;
             box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            width: fit-content;
         }
+
         .header span {
             text-decoration: underline;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
 
-        /* Bungkus box biar ada gradasi border */
+        /* QUOTE BOX */
         .quote-border {
-            padding: 5px; /* Ketebalan border */
+            padding: 5px;
             border-radius: 25px;
             background: linear-gradient(to bottom, #ffb6c1, #98fb98);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -52,6 +55,7 @@
             font-family: 'Times New Roman', Times, serif;
             font-style: italic;
             position: relative;
+            width: 450px;
         }
 
         .quote-box::before, .quote-box::after {
@@ -60,55 +64,71 @@
             color: #000000;
             position: absolute;
         }
+
         .quote-box::before {
             top: -10px;
             left: -10px;
         }
+
         .quote-box::after {
             content: '\201D';
             bottom: -10px;
             right: -10px;
         }
 
+        /* BUTTON */
         .button-container {
             display: flex;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 15px;
+            margin-top: 20px;
         }
+
         button {
             background: red;
             color: white;
             border: 2px solid black;
-            padding: 12px 20px;
-            border-radius: 10px;
+            padding: 14px 28px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             transition: background 0.3s, transform 0.2s;
+            min-width: 160px; /* Biar ukuran tombol sama semua */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px; /* Jarak antara icon dan teks */
         }
+
         button:hover {
             background: darkred;
             transform: scale(1.05);
         }
+
+        .back-button {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
+    <!-- HEADER -->
     <div class="header"><span>" Quotes untuk Winda "</span></div>
 
-    <!-- Pembungkus yang punya border gradasi -->
+    <!-- QUOTE BOX -->
     <div class="quote-border">
         <div class="quote-box" id="quote-box">
             Cinta sejati adalah tentang memahami dan menghargai, bukan mengubah.
         </div>
     </div>
 
+    <!-- BUTTONS -->
     <div class="button-container">
         <button onclick="prevQuote()">⬅️ Sebelumnya</button>
         <button onclick="nextQuote()">Selanjutnya ➡️</button>
     </div>
 
-    <button onclick="goBack()" style="margin-top: 20px;">🔙 Kembali</button>
+    <button class="back-button" onclick="goBack()">🔙 Kembali</button>
 
     <script>
         const quotes = [
