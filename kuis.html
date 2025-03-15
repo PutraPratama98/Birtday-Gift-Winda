@@ -1,203 +1,266 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuis Interaktif - Dimas & Winda</title>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kuis Cinta Dimas & Winda</title>
 
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #ffb6c1, #98fb98);
-            color: #333;
-        }
+  <!-- Link Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-        .header {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(5px);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            width: fit-content;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom, #ffb6c1, #98fb98);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+    }
 
-        .quiz-container {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(5px);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-            max-width: 500px;
-            width: 90%;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Pusatkan konten */
-            gap: 15px; /* Jarak antar elemen */
-        }
+    .header {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(5px);
+      padding: 20px;
+      border-radius: 15px;
+      margin: 20px 0;
+      width: fit-content;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border: 2px solid black;
+    }
 
-        h1, h2 {
-            color: #e91e63;
-            margin: 0;
-        }
+    .header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 32px;
+      color: #e91e63;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      text-decoration: underline;
+      margin: 0;
+    }
 
-        .option {
-            display: block;
-            margin: 8px 0;
-            padding: 12px;
-            background: #e91e63;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            transition: background-color 0.3s, transform 0.2s;
-        }
+    .quiz-container {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(5px);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      max-width: 500px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
 
-        .option:hover {
-            background: #c2185b;
-            transform: scale(1.03);
-        }
+    h2 {
+      color: #e91e63;
+      margin: 0;
+    }
 
-        .hidden {
-            display: none;
-        }
+    .option {
+      display: block;
+      margin: 8px 0;
+      padding: 12px;
+      background: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s, transform 0.2s;
+    }
 
-        .nav-buttons {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            gap: 10px;
-        }
+    .option:hover {
+      background: #c2185b;
+      transform: scale(1.03);
+    }
 
-        .nav-button {
-            background: #4caf50;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            min-width: 120px;
-        }
+    .hidden {
+      display: none;
+    }
 
-        .nav-button:hover {
-            background: #388e3c;
-            transform: scale(1.05);
-        }
+    #score {
+      font-size: 18px;
+      color: #333;
+      margin: 0;
+    }
 
-        #score {
-            font-size: 18px;
-            color: #333;
-            margin: 0;
-        }
-    </style>
+    /* Tombol Restart di dalam Quiz Container */
+    .restart-button {
+      background-color: #d62828;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 12px 24px;
+      border: 2px solid black;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease-in-out;
+      margin-top: 10px;
+    }
+
+    .restart-button:hover {
+      background-color: #e63946;
+      transform: scale(1.1);
+    }
+
+    .restart-button:active {
+      transform: scale(1.05);
+    }
+
+    /* Tombol Kembali di Luar Quiz Container */
+    .back-button {
+      background-color: #d62828;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 12px 24px;
+      border: 2px solid black; /* Garis tepi hitam */
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease-in-out;
+      margin: 30px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-button:hover {
+      background-color: #e63946;
+      transform: scale(1.1);
+    }
+
+    .back-button:active {
+      transform: scale(1.05);
+    }
+
+    .back-button img {
+      width: 20px;
+      height: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 24px;
+      }
+
+      .option {
+        font-size: 16px;
+      }
+
+      .restart-button, .back-button {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="header">
-        <h1>Kuis Cinta Dimas & Winda 💖</h1>
-    </div>
-    <div class="quiz-container">
-        <h2 id="question">Loading...</h2>
-        <div id="options" style="width: 100%;"></div>
 
-        <p id="score" class="hidden">Skor Kamu: <span id="score-value">0</span></p>
+  <div class="header">
+    <h1>Kuis Cinta Dimas & Winda 💖</h1>
+  </div>
 
-        <div class="nav-buttons">
-            <button id="restart" class="hidden nav-button" onclick="restartQuiz()">Main Lagi</button>
-            <button class="nav-button" onclick="goBack()">Kembali</button>
-        </div>
-    </div>
+  <div class="quiz-container">
+    <h2 id="question">Loading...</h2>
+    <div id="options" style="width: 100%;"></div>
 
-    <script>
-        const questions = [
-            {
-                question: "Di mana pertama kali aku dan Winda bertemu?",
-                options: ["Mall", "Kantor", "Pusat Kota Jakarta", "Cafe"],
-                answer: "Pusat Kota Jakarta"
-            },
-            {
-                question: "Apa kesamaan yang membuat aku tertarik dengan Winda?",
-                options: [
-                    "Sama-sama suka drama Korea",
-                    "Sama-sama suka One Piece",
-                    "Sama-sama suka kopi",
-                    "Sama-sama suka musik jazz"
-                ],
-                answer: "Sama-sama suka One Piece"
-            },
-            {
-                question: "Siapa yang pertama kali mengenalkan aku dengan Winda?",
-                options: ["Mas Faisal", "Mas Ari", "Bunda", "Sudendra"],
-                answer: "Mas Ari"
-            }
-        ];
+    <p id="score" class="hidden">Skor Kamu: <span id="score-value">0</span></p>
 
-        let currentQuestion = 0;
-        let score = 0;
+    <!-- Tombol Restart di dalam container -->
+    <button id="restart" class="hidden restart-button" onclick="restartQuiz()">Main Lagi</button>
+  </div>
 
-        const questionElement = document.getElementById("question");
-        const optionsElement = document.getElementById("options");
-        const scoreElement = document.getElementById("score");
-        const scoreValue = document.getElementById("score-value");
-        const restartButton = document.getElementById("restart");
+  <!-- Tombol Kembali di luar container -->
+<button class="back-button" onclick="goBack()">
+  🔙 Kembali
+</button>
 
-        function loadQuestion() {
-            if (currentQuestion < questions.length) {
-                questionElement.textContent = questions[currentQuestion].question;
-                optionsElement.innerHTML = "";
 
-                questions[currentQuestion].options.forEach(option => {
-                    const button = document.createElement("button");
-                    button.textContent = option;
-                    button.className = "option";
-                    button.onclick = () => checkAnswer(option);
-                    optionsElement.appendChild(button);
-                });
-            } else {
-                showResult();
-            }
-        }
+  <script>
+    const questions = [
+      {
+        question: "Di mana pertama kali aku dan Winda bertemu?",
+        options: ["Mall", "Kantor", "Pusat Kota Jakarta", "Cafe"],
+        answer: "Pusat Kota Jakarta"
+      },
+      {
+        question: "Apa kesamaan yang membuat aku tertarik dengan Winda?",
+        options: [
+          "Sama-sama suka drama Korea",
+          "Sama-sama suka One Piece",
+          "Sama-sama suka kopi",
+          "Sama-sama suka musik jazz"
+        ],
+        answer: "Sama-sama suka One Piece"
+      },
+      {
+        question: "Siapa yang pertama kali mengenalkan aku dengan Winda?",
+        options: ["Mas Faisal", "Mas Ari", "Bunda", "Sudendra"],
+        answer: "Mas Ari"
+      }
+    ];
 
-        function checkAnswer(selected) {
-            if (selected === questions[currentQuestion].answer) {
-                score++;
-            }
-            currentQuestion++;
-            loadQuestion();
-        }
+    let currentQuestion = 0;
+    let score = 0;
 
-        function showResult() {
-            questionElement.textContent = "Kuis Selesai! 🎉";
-            optionsElement.innerHTML = "";
-            scoreElement.classList.remove("hidden");
-            scoreValue.textContent = `${score} dari ${questions.length}`;
-            restartButton.classList.remove("hidden");
-        }
+    const questionElement = document.getElementById("question");
+    const optionsElement = document.getElementById("options");
+    const scoreElement = document.getElementById("score");
+    const scoreValue = document.getElementById("score-value");
+    const restartButton = document.getElementById("restart");
 
-        function restartQuiz() {
-            currentQuestion = 0;
-            score = 0;
-            scoreElement.classList.add("hidden");
-            restartButton.classList.add("hidden");
-            loadQuestion();
-        }
+    function loadQuestion() {
+      if (currentQuestion < questions.length) {
+        questionElement.textContent = questions[currentQuestion].question;
+        optionsElement.innerHTML = "";
 
-        function goBack() {
-            window.history.back();
-        }
+        questions[currentQuestion].options.forEach(option => {
+          const button = document.createElement("button");
+          button.textContent = option;
+          button.className = "option";
+          button.onclick = () => checkAnswer(option);
+          optionsElement.appendChild(button);
+        });
+      } else {
+        showResult();
+      }
+    }
 
-        loadQuestion();
-    </script>
+    function checkAnswer(selected) {
+      if (selected === questions[currentQuestion].answer) {
+        score++;
+      }
+      currentQuestion++;
+      loadQuestion();
+    }
+
+    function showResult() {
+      questionElement.textContent = "Kuis Selesai! 🎉";
+      optionsElement.innerHTML = "";
+      scoreElement.classList.remove("hidden");
+      scoreValue.textContent = `${score} dari ${questions.length}`;
+      restartButton.classList.remove("hidden");
+    }
+
+    function restartQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      scoreElement.classList.add("hidden");
+      restartButton.classList.add("hidden");
+      loadQuestion();
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+
+    loadQuestion();
+  </script>
+
 </body>
 </html>
