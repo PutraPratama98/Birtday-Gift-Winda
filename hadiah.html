@@ -1,108 +1,192 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hadiah untuk Winda</title>
-    <style>
-        body {
-            background: linear-gradient(to bottom, #ffb6c1, #98fb98);
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(5px);
-            padding: 15px 0;
-            font-size: 24px;
-            font-weight: bold;
-            color: #d63384;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        .container {
-            margin-top: 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-        .card {
-            background: white;
-            padding: 20px;
-            margin: 15px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .card:hover {
-            transform: scale(1.05);
-        }
-        .button {
-            background: #d63384;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 20px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .button:hover {
-            background: #c2185b;
-        }
-        .back-button {
-            position: absolute;
-            left: 20px;
-            top: 15px;
-            background: #d63384;
-            color: white;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 20px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pilih Hadiah untuk Winda 🎁</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom, #ffb6c1, #98fb98);
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .header {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(5px);
+      padding: 20px 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border: 2px solid black;
+    }
+
+    .header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 32px;
+      color: #d63384;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      margin: 0;
+      text-decoration: underline;
+      text-decoration-color: #d63384;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 2px;
+    }
+
+    .gift-border {
+      background: linear-gradient(to bottom, #ffb6c1, #98fb98);
+      padding: 6px;
+      border-radius: 24px;
+      width: fit-content;
+    }
+
+    .gift-container {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(5px);
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      max-width: 480px;
+      width: 90vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .card {
+      background-color: #d63384;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .card:hover {
+      background-color: #c2185b;
+      transform: scale(1.05);
+    }
+
+    .card h2 {
+      margin: 0 0 10px 0;
+      font-size: 20px;
+    }
+
+    .back-button {
+      background-color: #d62828;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 12px 24px;
+      border: 2px solid black;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease-in-out;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .back-button:hover {
+      background-color: #e63946;
+      transform: scale(1.1);
+    }
+
+    .back-button:active {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 24px;
+      }
+
+      .gift-container {
+        padding: 20px;
+      }
+
+      .card {
+        padding: 12px 16px;
+      }
+
+      .back-button {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
+
+  <div class="container">
+    <!-- Header -->
     <div class="header">
-        <button class="back-button" onclick="window.history.back();">Kembali</button>
-        Pilih Hadiah untuk Winda
+      <h1>Pilih Hadiah untuk Winda 🎁</h1>
     </div>
 
-    <div class="container">
+    <!-- Gift Options -->
+    <div class="gift-border">
+      <div class="gift-container">
         <div class="card" onclick="kirimWhatsapp('Ngedate Romantis')">
-            <h2>Ngedate Romantis</h2>
-            <p>Menghabiskan waktu bersama dengan suasana romantis.</p>
+          <h2>Ngedate Romantis</h2>
+          <p>Menghabiskan waktu bersama dengan suasana romantis.</p>
         </div>
         <div class="card" onclick="kirimWhatsapp('Nonton Bioskop')">
-            <h2>Nonton Bioskop</h2>
-            <p>Menonton film favorit di bioskop bersama.</p>
+          <h2>Nonton Bioskop</h2>
+          <p>Menonton film favorit di bioskop bersama.</p>
         </div>
         <div class="card" onclick="kirimWhatsapp('Makan Bersama')">
-            <h2>Makan Bersama</h2>
-            <p>Menikmati hidangan spesial bersama.</p>
+          <h2>Makan Bersama</h2>
+          <p>Menikmati hidangan spesial bersama.</p>
         </div>
+      </div>
     </div>
 
-    <script>
-        function kirimWhatsapp(pilihan) {
-            const nomorTujuan = "6281211875702"; // Nomor WhatsApp kamu
-            const pesan = `Hai sayang! Aku pilih ${pilihan} ❤️`;
-            const linkWA = `https://wa.me/${nomorTujuan}?text=${encodeURIComponent(pesan)}`;
-            
-            // Arahkan user ke WhatsApp
-            window.location.href = linkWA;
-        }
-    </script>
+    <!-- Back Button -->
+    <button class="back-button" onclick="goBack()">🔙 Kembali</button>
+  </div>
+
+  <script>
+    function kirimWhatsapp(pilihan) {
+      const nomorTujuan = "6281211875702";
+      const pesan = `Hai sayang! Aku pilih ${pilihan} ❤️`;
+      const linkWA = `https://wa.me/${nomorTujuan}?text=${encodeURIComponent(pesan)}`;
+
+      window.location.href = linkWA;
+    }
+
+    function goBack() {
+      window.location.href = "beranda.html";
+    }
+  </script>
+
 </body>
 </html>
