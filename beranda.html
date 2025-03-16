@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Selamat Ulang Tahun Winda</title>
+
+  <!-- Import font Pacifico dari Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
   <style>
     html, body {
       height: 100%;
@@ -21,27 +25,52 @@
       justify-content: space-between;
     }
 
+    /* HEADER */
     header {
       background-color: rgba(255, 182, 193, 0.8);
       padding: 20px;
       border-radius: 10px;
       margin: 20px auto;
       max-width: 600px;
+      border: 2px solid #000;
     }
 
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 32px;
+      color: #d62828;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      text-decoration: underline;
+      white-space: nowrap;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    /* MAIN CONTENT / CONTAINER UTAMA */
     .welcome {
       background-color: rgba(255, 255, 255, 0.8);
       padding: 30px;
       margin: 30px auto;
       border-radius: 15px;
       max-width: 90%;
+
+      /* BORDER GRADASI VERTIKAL */
+      border: 6px solid transparent;
+      border-image: linear-gradient(to bottom, #ffb6c1, #98fb98);
+      border-image-slice: 1;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+      /* FONT TIMES NEW ROMAN */
+      font-family: 'Times New Roman', Times, serif;
     }
 
+    /* GRID MENU CONTAINER */
     .grid-menu-container {
       overflow-x: auto;
       padding: 10px 0;
     }
 
+    /* GRID MENU ITEM */
     .grid-menu {
       display: flex;
       flex-direction: row;
@@ -67,6 +96,14 @@
       height: 120px;
       flex: 0 0 auto;
       transition: background-color 0.3s, transform 0.3s;
+
+      /* BORDER WARNA PINK */
+      border: 2px solid #ffb6c1;
+
+      /* FONT TIMES NEW ROMAN */
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16px;
+      text-align: center;
     }
 
     .grid-menu a:hover {
@@ -80,6 +117,7 @@
       margin-bottom: 10px;
     }
 
+    /* FOOTER */
     footer {
       background-color: rgba(152, 251, 152, 0.8);
       padding: 20px;
@@ -88,16 +126,20 @@
       max-width: 600px;
     }
 
+    /* SCROLLBAR */
     .grid-menu-container::-webkit-scrollbar {
       height: 8px;
     }
+
     .grid-menu-container::-webkit-scrollbar-track {
       background: #f1f1f1;
     }
+
     .grid-menu-container::-webkit-scrollbar-thumb {
       background: #ff69b4;
       border-radius: 4px;
     }
+
     .grid-menu-container::-webkit-scrollbar-thumb:hover {
       background: #ff1493;
     }
@@ -105,14 +147,18 @@
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
-    <h1> 🎉 Selamat Ulang Tahun, Winda Yani Hutasoit 🎉</h1>
+    <h1>🎉 Selamat Ulang Tahun 🎉</h1>
+    <h1>💖 Winda Yani Hutasoit 💖</h1>
   </header>
 
+  <!-- MAIN / CONTAINER UTAMA -->
   <main class="welcome">
     <h2>Winda, hari ini adalah hari spesial untukmu!</h2>
     <p>Aku telah menyiapkan sesuatu yang spesial untukmu di website ini. Selamat Menikmati!</p>
 
+    <!-- GRID MENU -->
     <div class="grid-menu-container">
       <div class="grid-menu">
         <a href="surat.html">
@@ -139,32 +185,30 @@
     </div>
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2025 Dibuat dengan cinta oleh Dimas 💖</p>
   </footer>
 
-  <!-- Audio player -->
+  <!-- AUDIO PLAYER -->
   <audio id="backgroundMusic" src="romantic-music12.mp3" loop></audio>
 
   <script>
     const backgroundMusic = document.getElementById('backgroundMusic');
 
-    // Cek apakah user udah klik tombol buka kado di halaman sebelumnya
+    // Cek apakah user sudah klik tombol sebelumnya
     const musicStatus = localStorage.getItem('musicPlaying');
 
-    // Kalau sudah, langsung putar musiknya
     if (musicStatus === 'true') {
       playMusic();
     }
 
-    // Kalau browser butuh klik user, pasang listener
     document.body.addEventListener('click', playMusic);
 
     function playMusic() {
       backgroundMusic.play().then(() => {
         console.log("Musik diputar");
         localStorage.setItem('musicPlaying', 'true');
-        // Hapus event listener setelah musik berhasil play
         document.body.removeEventListener('click', playMusic);
       }).catch(err => {
         console.log("Browser butuh klik user buat play musik:", err);
