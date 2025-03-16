@@ -1,111 +1,165 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeri Kenangan</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 20px;
-            background: linear-gradient(to bottom, #ffb6c1, #98fb98);
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-        .wrapper {
-            width: 100%;
-        }
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            border-radius: 0 0 10px 10px;
-            font-size: 24px;
-            font-weight: bold;
-            color: #d63384;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
-        .gallery {
-            margin-top: 100px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            align-items: center;
-            justify-content: center;
-        }
-        .gallery-row {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .gallery-item {
-            background: white;
-            padding: 10px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
-        }
-        img, video {
-            width: 200px;
-            height: auto;
-            border-radius: 10px;
-        }
-        .button {
-            background: #d63384;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 20px;
-            font-size: 16px;
-            cursor: pointer;
-            margin: 30px 0;
-        }
-        .button:hover {
-            background: #c2185b;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galeri Kenangan</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
-        /* Responsif mobile */
-        @media (max-width: 400px) {
-            img, video {
-                width: 90%;
-            }
-            .header {
-                font-size: 20px;
-            }
-        }
-    </style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background: linear-gradient(to bottom, #ffb6c1, #98fb98);
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      min-height: 100vh;
+      padding: 30px 20px; /* Ditambah padding supaya ga nempel di atas */
+    }
+
+    /* HEADER dari kuis, tanpa posisi fixed */
+    .header {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(5px);
+      padding: 20px 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border: 2px solid black;
+      text-align: center;
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+
+    .header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 32px;
+      color: #e91e63;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      margin: 0;
+      text-decoration: underline;
+      text-decoration-color: #e91e63;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 2px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .gallery-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .gallery-item {
+      background: white;
+      padding: 10px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    img, video {
+      width: 200px;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    /* BACK BUTTON dari kuis */
+    .back-button {
+      background-color: #d62828;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 12px 24px;
+      border: 2px solid black;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease-in-out;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 30px 0;
+    }
+
+    .back-button:hover {
+      background-color: #e63946;
+      transform: scale(1.1);
+    }
+
+    .back-button:active {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 400px) {
+      .header h1 {
+        font-size: 24px;
+      }
+
+      img, video {
+        width: 90%;
+      }
+
+      .back-button {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="header">Galeri Kenangan</div>
-        
-        <div class="gallery">
-            <div class="gallery-row">
-                <div class="gallery-item"><img src="/images/photo1.jpg" alt="Foto 1"></div>
-                <div class="gallery-item"><img src="/images/photo2.jpg" alt="Foto 2"></div>
-                <div class="gallery-item"><img src="/images/photo3.jpg" alt="Foto 3"></div>
-            </div>
-            <div class="gallery-row">
-                <div class="gallery-item"><video controls><source src="/videos/video1.mp4" type="video/mp4"></video></div>
-                <div class="gallery-item"><video controls><source src="/videos/video2.mp4" type="video/mp4"></video></div>
-            </div>
-        </div>
-        
-        <button class="button" onclick="history.back()">Kembali</button>
+
+  <div class="wrapper">
+    <div class="header">
+      <h1>Galeri Kenangan</h1>
     </div>
+
+    <div class="gallery">
+      <div class="gallery-row">
+        <div class="gallery-item"><img src="/images/photo1.jpg" alt="Foto 1"></div>
+        <div class="gallery-item"><img src="/images/photo2.jpg" alt="Foto 2"></div>
+        <div class="gallery-item"><img src="/images/photo3.jpg" alt="Foto 3"></div>
+      </div>
+      <div class="gallery-row">
+        <div class="gallery-item"><video controls><source src="/videos/video1.mp4" type="video/mp4"></video></div>
+        <div class="gallery-item"><video controls><source src="/videos/video2.mp4" type="video/mp4"></video></div>
+      </div>
+    </div>
+
+    <button class="back-button" onclick="goBack()">🔙 Kembali</button>
+  </div>
+
+  <script>
+    function goBack() {
+      window.location.href = "beranda.html";
+    }
+  </script>
+
 </body>
 </html>
